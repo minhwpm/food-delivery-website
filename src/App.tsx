@@ -3,12 +3,14 @@ import './App.css';
 import FoodCard from './components/FoodCard/FoodCard';
 import type { FoodType } from './components/FoodCard/FoodCard';
 import CategoryFilter from './components/CategoryFilter/CategoryFilter';
-
+import { fetchFoodData } from './store/foodSlice';
+import { useAppSelector, useAppDispatch } from './store/hooks'
 
 function App() {
-  let [categories, setCategories] = useState([])
-  let [foodList, setFoodList] = useState([])
-  console.log(categories, foodList)
+  const [categories, setCategories] = useState([])
+  const showedFood = useAppSelector(s => s.food.foodList.showed)
+  const dispatch = useAppDispatch()
+  console.log(showedFood)
 
   useEffect(() => {
     
@@ -17,27 +19,23 @@ function App() {
       .then(data => setCategories(data))
       .catch(e => console.error(e))
 
-    fetch("https://run.mocky.io/v3/a24cfec5-f76c-410b-a5ac-9f63fab28abb")
-      .then(response => response.json())
-      .then(data => setFoodList(data))
-      .catch(e => console.error(e))
+    dispatch(fetchFoodData())
 
-  }, [])
+  }, [dispatch])
 
 
   return (
-    <div className="App container">
-      
-      {!!categories.length && (
-        <CategoryFilter categories={categories} />
-      )}
-
-      <div className="food-list">
-        {!!foodList.length && foodList.map((item: FoodType) => (
-          <FoodCard {...item} />
-        ))}
+    
+      <div className="App container">
+        {!!categories.length && (
+          <CategoryFilter categories={categories} />
+        )}
+        <div className="food-list">
+          {!!showedFood.length && showedFood.map((item: FoodType) => (
+            <FoodCard key={item.id} {...item} />
+          ))}
+        </div>
       </div>
-    </div>
   );
 }
 

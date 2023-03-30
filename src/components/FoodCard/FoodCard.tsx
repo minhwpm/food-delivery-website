@@ -16,13 +16,13 @@ export type FoodType = {
 }
 
 export default function FoodCard(props: FoodType) {
-  const { rating, promotion, isNew, categoryId, minCookTime, maxCookTime, restaurant, name, imageUrl } = props
+  const { index, rating, promotion, isNew, categoryId, minCookTime, maxCookTime, restaurant, name, imageUrl } = props
   return (
     <div className="food-card">
       {promotion && <Badge type={promotion} />}
       <img className="thumbnail" src={imageUrl} alt={name} />
       <div className="info">
-        <h3 className="title">{name} - {restaurant}</h3>
+        <h3 className="title">{index} - {name} - {restaurant}</h3>
         <div className="tag-box">
           <span className="tag">{rating}</span>
           <span className="tag">{minCookTime}-{maxCookTime} min</span>
