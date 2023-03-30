@@ -1,5 +1,5 @@
 .App {
-  text-align: center;
+  /* text-align: center; */
 }
 
 .App-logo {
@@ -35,4 +35,138 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.container {
+  padding: 25px;
+  max-width: 1024px;
+  margin: 0 auto;
+  overflow-x: hidden;
+}
+
+.category-filter {
+  display: flex;
+  flex-wrap: wrap;
+  padding-inline-start: 0;
+}
+
+.category-filter li {
+  list-style-type: none;
+  padding: 15px 25px;
+  border: 2px solid var(--primary-color);
+  cursor: pointer;
+}
+
+.category-filter li:hover {
+  background-color: rgba(255,199, 0, 0.5);
+}
+
+.category-filter li:not(:first-child) {
+  border-left: none;
+}
+
+.category-filter li.active {
+  background-color: var(--primary-color);
+}
+
+.category-filter li:first-child  {
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+}
+
+.category-filter li:last-child {
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+/*  @media only screen and (min-width: 768px) {
+ } */
+
+/* FOOD LIST */
+.food-list {
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: auto;
+  gap: 25px;
+}
+
+@media only screen and (min-width: 600px) {
+  .food-list {
+    grid-template-columns: auto auto;
+  }
+}
+
+@media only screen and (min-width: 975px) {
+  .food-list {
+    grid-template-columns: auto auto auto;
+  }
+}
+
+
+.food-card {
+  border-radius: 20px;
+  box-shadow: 2px 5px 10px #ddd;
+  position: relative;
+}
+
+.food-card .thumbnail {
+  width: 100%;
+  aspect-ratio: 8/5;
+  object-fit: cover;
+  border-top-right-radius: 20px;
+  border-top-left-radius: 20px;
+}
+
+.food-card .tag {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 8px;
+  background-color: #F7F8FA;
+}
+
+.food-card .tag.new {
+  color: var(--green-color);
+  font-weight: bold;
+}
+
+.food-card .badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 8px 22px;
+  color: white;
+  font-weight: bold;
+}
+
+.food-card .badge {
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+
+.food-card .badge.gift {
+  background: var(--blue-color);
+}
+
+.food-card .badge.discount {
+  background: var(--red-color);
+}
+
+.food-card .badge.plus-one {
+  background: var(--purple-color);
+}
+
+.food-card .title {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.food-card .info {
+  padding: 20px;
+}
+
+.food-card .tag-box {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  font-size: 0.85rem;
 }
