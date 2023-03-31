@@ -6,7 +6,7 @@ const SearchBox: React.FC = () => {
   const dispatch = useAppDispatch()
   return (
     <>
-      <input className="search-box" onChange={(e) => {
+      <input placeholder="Enter food..." className="search-box" onChange={(e) => {
         dispatch(foodActions.searchByName(e.target.value))
       }} />
     </>

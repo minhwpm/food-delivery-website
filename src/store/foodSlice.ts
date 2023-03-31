@@ -27,7 +27,7 @@ const initialState: FoodState = {
   },
   selectedCategory: {
     id: "all",
-    name: "all",
+    name: "All",
   },
   foodList: {
     all: [],
@@ -93,7 +93,7 @@ export const foodSlice = createSlice({
     },
     searchByName(state, action) {
       state.searchQuery = action.payload
-      state.foodList.showed = state.foodList.all.filter((item: FoodType) => {
+      state.foodList.showed = state.foodList.all.filter((item: FoodType) => { //@TODO refactor
         if (state.selectedCategory.id === "all") {
           return item.name.toLowerCase().includes(action.payload.toLowerCase().trim())
         }
