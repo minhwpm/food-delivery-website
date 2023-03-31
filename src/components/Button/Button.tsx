@@ -1,8 +1,16 @@
-import React from "react"
+import React from "react";
 
-
-const Button: React.FC = () => {
-  return (
-    <button></button>
-  )
+interface ButtonProps {
+  children: React.ReactNode;
+  onClick: () => void;
 }
+
+const Button: React.FC<ButtonProps> = ({ children, onClick }) => {
+  return (
+    <button className="btn align-center" onClick={onClick}>
+      {children}
+    </button>
+  );
+};
+
+export default Button;

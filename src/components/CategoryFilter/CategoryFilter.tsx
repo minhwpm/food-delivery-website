@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useAppDispatch } from "../../store/hooks";
+import React from "react";
+import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { foodActions } from "../../store/foodSlice";
 
 type CategoryType = {
@@ -10,29 +10,32 @@ type CategoryType = {
 const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
   categories,
 }) => {
-  const [activeKey, setActiveKey] = useState("all");
-  const dispatch = useAppDispatch()
+  const { selectedCategory } = useAppSelector((s) => s.food);
+  const dispatch = useAppDispatch();
+  // console.log(selectedCategory);
 
   return (
     <ul className="category-filter">
       <li
         onClick={() => {
-          setActiveKey("all")
-          dispatch(foodActions.changeCategory({ id: "all", name: "all" }))
+          // setActiveKey("all")
+          dispatch(foodActions.changeCategory({ id: "all", name: "all" }));
         }}
         key="all"
-        className={activeKey === "all" ? "active" : ""}
+        className={selectedCategory.id === "all" ? "active" : ""}
       >
         All
       </li>
       {categories.map((item: CategoryType) => (
         <li
           onClick={() => {
-            setActiveKey(item.id)
-            dispatch(foodActions.changeCategory({ id: item.id, name: item.name }))
+            // setActiveKey(item.id)
+            dispatch(
+              foodActions.changeCategory({ id: item.id, name: item.name })
+            );
           }}
           key={item.id}
-          className={activeKey === item.id ? "active" : ""}
+          className={selectedCategory.id === item.id ? "active" : ""}
         >
           {item.name}
         </li>

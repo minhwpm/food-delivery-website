@@ -1,5 +1,6 @@
 .App {
   /* text-align: center; */
+  background: var(--grey-color);
 }
 
 .App-logo {
@@ -38,7 +39,7 @@
 }
 
 .container {
-  padding: 25px;
+  padding: 50px 25px;
   max-width: 1024px;
   margin: 0 auto;
   overflow-x: hidden;
@@ -55,10 +56,12 @@
   padding: 15px 25px;
   border: 2px solid var(--primary-color);
   cursor: pointer;
+  transition: background 0.3s linear;
 }
 
 .category-filter li:hover {
-  background-color: rgba(255,199, 0, 0.5);
+  background: rgba(255,199, 0, 0.5);
+  transition: background 0.3s linear;
 }
 
 .category-filter li:not(:first-child) {
@@ -83,8 +86,11 @@
  } */
 
 /* FOOD LIST */
+.wrapper {
+  padding-bottom: 280px;
+}
 .food-list {
-  margin-top: 50px;
+  margin: 50px 0;
   display: grid;
   grid-template-columns: auto;
   gap: 25px;
@@ -105,8 +111,17 @@
 
 .food-card {
   border-radius: 20px;
+  background: #fff;
   box-shadow: 2px 5px 10px #ddd;
   position: relative;
+  transition: transform 0.5s ease-in-out;
+}
+
+.food-card:hover {
+  transform: scale(1.05);
+  transition: transform 0.5s ease-in-out;
+  box-shadow: 3px 8px 15px #aaa;
+
 }
 
 .food-card .thumbnail {
@@ -121,12 +136,16 @@
   display: inline-block;
   padding: 3px 12px;
   border-radius: 8px;
-  background-color: #F7F8FA;
+  background-color: var(--grey-color);
 }
 
 .food-card .tag.new {
   color: var(--green-color);
   font-weight: bold;
+}
+
+.food-card .tag svg {
+  margin-right: 5px;
 }
 
 .food-card .badge {
@@ -169,4 +188,34 @@
   flex-wrap: wrap;
   gap: 8px;
   font-size: 0.85rem;
+}
+
+.btn {
+  padding: 15px 30px;
+  border-radius: 10px;
+  border: 2px solid var(--primary-color);
+  background: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.btn:hover {
+  background: var(--primary-color)
+}
+
+.align-center {
+  display: block;
+  margin: auto;
+}
+
+.text-center {
+  text-align: center;
+}
+
+/* SEARCH */
+.search-box {
+  margin-bottom: 20px;
+}
+.search-result-noti {
+  height: 20px;
 }

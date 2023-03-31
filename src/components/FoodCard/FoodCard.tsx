@@ -1,4 +1,5 @@
 import Badge from "../Badge/Badge"
+import StarIcon from "../icons/StarIcon"
 
 export type PromotionType = '1+1' | 'gift' | 'discount'
 export type FoodType = {
@@ -22,9 +23,14 @@ export default function FoodCard(props: FoodType) {
       {promotion && <Badge type={promotion} />}
       <img className="thumbnail" src={imageUrl} alt={name} />
       <div className="info">
-        <h3 className="title">{index} - {name} - {restaurant}</h3>
+        <h3 className="title">
+          {index} - {name}
+        </h3>
         <div className="tag-box">
-          <span className="tag">{rating}</span>
+          <span className="tag">
+            <StarIcon />
+            {rating.toString().substring(0, 3)}
+          </span>
           <span className="tag">{minCookTime}-{maxCookTime} min</span>
           {isNew && <span className="tag new">New</span>}
         </div>
