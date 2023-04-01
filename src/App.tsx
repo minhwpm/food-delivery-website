@@ -28,11 +28,9 @@ function App() {
       <div className="container">
         <SearchBox />
           <div className="search-result-noti">
-            {searchQuery && (
+            {searchQuery && !pagination.hasMore && (
               <>
-                {foodList.showed.length <= 1
-                  ? `There is ${foodList.showed.length} result.`
-                  : `There are ${foodList.showed.length} results.`}
+                {foodList.showed.length <= 1 ? `There is ${foodList.showed.length} result.` : `There are ${foodList.showed.length} results.`}
               </>
             )}
           </div>

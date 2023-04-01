@@ -4,19 +4,19 @@ import type { FoodType } from "../components/FoodCard/FoodCard";
 const pageSize = 9;
 
 interface FoodState {
-  searchQuery: string
+  searchQuery: string;
   pagination: {
-    currentNo: number
-    hasMore: boolean
-  }
+    currentNo: number;
+    hasMore: boolean;
+  };
   selectedCategory: {
-    id: string
-    name: string
-  }
+    id: string;
+    name: string;
+  };
   foodList: {
-    all: Array<FoodType>
-    showed: Array<FoodType>
-  }
+    all: Array<FoodType>;
+    showed: Array<FoodType>;
+  };
 }
 
 const initialState: FoodState = {
@@ -33,79 +33,82 @@ const initialState: FoodState = {
     all: [],
     showed: [],
   },
+};
+
+function filter2Data(data: Array<FoodType>, state: FoodState): Array<FoodType> {
+  //Time complex O(n) with n=200
+  return data
+    .filter((item) => {
+      return (
+        (state.selectedCategory.id === "all" ||
+          item.categoryId === state.selectedCategory.id) &&
+        (state.searchQuery === "" ||
+          item.name.toLowerCase().includes(state.searchQuery))
+      );
+    })
+    .slice(0, pageSize);
+}
+
+function filterData(data: Array<FoodType>, state: FoodState): Array<FoodType> {
+  //Time complex O(n) with  9 =< n <= 200
+  let quantity = 1;
+  const result: Array<FoodType> = [];
+  data.every((item) => {
+    if (quantity > pageSize) return false;
+    if (
+      (state.selectedCategory.id === "all" ||
+        item.categoryId === state.selectedCategory.id) &&
+      (state.searchQuery === "" ||
+        item.name.toLowerCase().includes(state.searchQuery))
+    ) {
+      result.push(item);
+      quantity++;
+    }
+    return true;
+  });
+  console.log("filterData", state.selectedCategory.id, state.searchQuery, result);
+  return result;
 }
 
 export const foodSlice = createSlice({
   name: "food",
   initialState,
   reducers: {
+    initFoodData(state, action) {
+      state.foodList.all = action.payload;
+      state.foodList.showed = filterData(state.foodList.all, state);
+    },
     changeCategory(state, action) {
       state.selectedCategory.id = action.payload.id;
       state.selectedCategory.name = action.payload.name;
+      //reset state for pagination
       state.pagination.currentNo = 1;
       state.pagination.hasMore = true;
 
-      if (action.payload.id === "all") {
-        state.foodList.showed = state.foodList.all.slice(0, pageSize);
-        return;
-      }
-      state.foodList.showed = state.foodList.all
-        .filter((item: FoodType) => item.categoryId === action.payload.id)
-        .slice(0, pageSize);
-    },
-    initFoodData(state, action) {
-      state.foodList.all = action.payload;
-      if (state.selectedCategory.id === "all") {
-        state.foodList.showed = state.foodList.all.slice(0, pageSize);
-        return;
-      }
-      state.foodList.showed = state.foodList.all
-        .filter((item: FoodType) => item.categoryId === state.selectedCategory.id)
-        .slice(0, pageSize);
-    },
-    nextPage(state) {
-      if (state.selectedCategory.id === "all") {
-        state.foodList.showed = state.foodList.showed.concat(
-          //@TODO refactor
-          state.foodList.all.slice(
-            pageSize * state.pagination.currentNo,
-            pageSize * ++state.pagination.currentNo
-          )
-        );
-        return;
-      }
-
-      let limit = 1;
-      state.foodList.all
-        .slice(
-          state.foodList.showed[state.foodList.showed.length - 1].index + 1
-        )
-        .every((item: FoodType) => {
-          if (limit > pageSize) return false;
-
-          if (item.categoryId === state.selectedCategory.id) {
-            state.foodList.showed.push(item);
-            limit++;
-          }
-          return true;
-        });
-      if (limit < pageSize) state.pagination.hasMore = false;
+      state.foodList.showed = filterData(state.foodList.all, state);
+      if (state.foodList.showed.length < pageSize)
+        state.pagination.hasMore = false;
     },
     searchByName(state, action) {
-      state.searchQuery = action.payload
-      state.foodList.showed = state.foodList.all.filter((item: FoodType) => { //@TODO refactor
-        if (state.selectedCategory.id === "all") {
-          return item.name.toLowerCase().includes(action.payload.toLowerCase().trim())
-        }
-        return (
-          item.name
-            .toLowerCase()
-            .includes(action.payload.toLowerCase().trim()) &&
-          item.categoryId === state.selectedCategory.id
-        );
-      })
-      console.log("SEARCH", action.payload, state.foodList.showed.length)
-    }
+      state.searchQuery = action.payload.toLowerCase().trim();
+      //reset state for pagination
+      state.pagination.currentNo = 1;
+      state.pagination.hasMore = true;
+
+      state.foodList.showed = filterData(state.foodList.all, state);
+      if (state.foodList.showed.length < pageSize)
+        state.pagination.hasMore = false;
+    },
+    nextPage(state) {
+      const nextList = filterData(
+        state.foodList.all.slice(
+          state.foodList.showed[state.foodList.showed.length - 1].index + 1
+        ),
+        state
+      );
+      if (nextList.length < pageSize) state.pagination.hasMore = false;
+      state.foodList.showed = state.foodList.showed.concat(nextList);
+    },
   },
 });
 
@@ -116,4 +119,10 @@ export const fetchFoodData = () => (dispatch: Dispatch) => {
     .catch((e) => console.error(e));
 };
 
-export const foodActions = foodSlice.actions
+export const foodActions = foodSlice.actions;
+
+// SUSHI: 46
+// PIZZA: 38
+// HOT MEALS: 39
+// DESSERTS: 38
+// DRINKS: 39

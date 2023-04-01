@@ -1,6 +1,7 @@
 .App {
   /* text-align: center; */
   background: var(--grey-color);
+  min-height: 100vh;
 }
 
 .App-logo {
@@ -51,10 +52,9 @@
 }
 .category-switcher {
   display: flex;
-  /* border: 2px solid var(--primary-color); */
   height: 50px;
   max-width: 250px;
-  /* align-items: center; */
+  cursor: pointer;
 }
 .category-switcher .left {
   display: flex;
