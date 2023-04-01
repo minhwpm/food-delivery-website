@@ -1,5 +1,6 @@
 import Badge from "../Badge/Badge"
-import StarIcon from "../icons/StarIcon"
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faStar } from '@fortawesome/free-solid-svg-icons'
 
 export type PromotionType = '1+1' | 'gift' | 'discount'
 export type FoodType = {
@@ -17,7 +18,7 @@ export type FoodType = {
 }
 
 export default function FoodCard(props: FoodType) {
-  const { index, rating, promotion, isNew, categoryId, minCookTime, maxCookTime, restaurant, name, imageUrl } = props
+  const { index, rating, promotion, isNew, minCookTime, maxCookTime, name, imageUrl } = props
   return (
     <div className="food-card">
       {promotion && <Badge type={promotion} />}
@@ -28,7 +29,7 @@ export default function FoodCard(props: FoodType) {
         </h3>
         <div className="tag-box">
           <span className="tag">
-            <StarIcon />
+            <FontAwesomeIcon icon={faStar} color="#6A6466" />
             {rating.toString().substring(0, 3)}
           </span>
           <span className="tag">{minCookTime}-{maxCookTime} min</span>

@@ -4,7 +4,10 @@ import type { FoodType } from "../components/FoodCard/FoodCard";
 const pageSize = 9;
 
 interface FoodState {
-  searchQuery: string;
+  search: {
+    keyword: string;
+    resultNo: number;
+  }
   pagination: {
     currentNo: number;
     hasMore: boolean;
@@ -17,10 +20,14 @@ interface FoodState {
     all: Array<FoodType>;
     showed: Array<FoodType>;
   };
+  notification: string
 }
 
 const initialState: FoodState = {
-  searchQuery: "",
+  search: {
+    keyword: "",
+    resultNo: 0
+  },
   pagination: {
     currentNo: 1,
     hasMore: true,
@@ -33,41 +40,21 @@ const initialState: FoodState = {
     all: [],
     showed: [],
   },
+  notification: ""
 };
 
-function filter2Data(data: Array<FoodType>, state: FoodState): Array<FoodType> {
-  //Time complex O(n) with n=200
-  return data
+function filterData(data: Array<FoodType>, state: FoodState): [Array<FoodType>, number] {
+  //Time complex O(n) with n=200 (number of items)
+  const filtered = data
     .filter((item) => {
       return (
         (state.selectedCategory.id === "all" ||
           item.categoryId === state.selectedCategory.id) &&
-        (state.searchQuery === "" ||
-          item.name.toLowerCase().includes(state.searchQuery))
+        (state.search.keyword === "" ||
+          item.name.toLowerCase().includes(state.search.keyword))
       );
     })
-    .slice(0, pageSize);
-}
-
-function filterData(data: Array<FoodType>, state: FoodState): Array<FoodType> {
-  //Time complex O(n) with  9 =< n <= 200
-  let quantity = 1;
-  const result: Array<FoodType> = [];
-  data.every((item) => {
-    if (quantity > pageSize) return false;
-    if (
-      (state.selectedCategory.id === "all" ||
-        item.categoryId === state.selectedCategory.id) &&
-      (state.searchQuery === "" ||
-        item.name.toLowerCase().includes(state.searchQuery))
-    ) {
-      result.push(item);
-      quantity++;
-    }
-    return true;
-  });
-  console.log("filterData", state.selectedCategory.id, state.searchQuery, result);
-  return result;
+    return [filtered.slice(0, pageSize), filtered.length];
 }
 
 export const foodSlice = createSlice({
@@ -76,7 +63,7 @@ export const foodSlice = createSlice({
   reducers: {
     initFoodData(state, action) {
       state.foodList.all = action.payload;
-      state.foodList.showed = filterData(state.foodList.all, state);
+      [ state.foodList.showed, state.search.resultNo ] = filterData(state.foodList.all, state);
     },
     changeCategory(state, action) {
       state.selectedCategory.id = action.payload.id;
@@ -85,22 +72,22 @@ export const foodSlice = createSlice({
       state.pagination.currentNo = 1;
       state.pagination.hasMore = true;
 
-      state.foodList.showed = filterData(state.foodList.all, state);
+      [ state.foodList.showed, state.search.resultNo ] = filterData(state.foodList.all, state);
       if (state.foodList.showed.length < pageSize)
         state.pagination.hasMore = false;
     },
     searchByName(state, action) {
-      state.searchQuery = action.payload.toLowerCase().trim();
+      state.search.keyword = action.payload.toLowerCase().trim();
       //reset state for pagination
       state.pagination.currentNo = 1;
       state.pagination.hasMore = true;
 
-      state.foodList.showed = filterData(state.foodList.all, state);
+      [ state.foodList.showed, state.search.resultNo ] = filterData(state.foodList.all, state);
       if (state.foodList.showed.length < pageSize)
         state.pagination.hasMore = false;
     },
     nextPage(state) {
-      const nextList = filterData(
+      const [ nextList ] = filterData(
         state.foodList.all.slice(
           state.foodList.showed[state.foodList.showed.length - 1].index + 1
         ),
@@ -109,20 +96,21 @@ export const foodSlice = createSlice({
       if (nextList.length < pageSize) state.pagination.hasMore = false;
       state.foodList.showed = state.foodList.showed.concat(nextList);
     },
+    updateNotification(state, action) {
+      state.notification = action.payload
+    }
   },
 });
 
-export const fetchFoodData = () => (dispatch: Dispatch) => {
-  fetch("https://run.mocky.io/v3/a24cfec5-f76c-410b-a5ac-9f63fab28abb")
-    .then((response) => response.json())
-    .then((data) => dispatch(foodActions.initFoodData(data)))
-    .catch((e) => console.error(e));
+export const fetchFoodData = () => async (dispatch: Dispatch) => {
+  try {
+    const res = await fetch(process.env.REACT_APP_FOOD_API as string);
+    const data = await res.json();
+    dispatch(foodActions.initFoodData(data))
+  } catch(e) {
+    console.error(e)
+    dispatch(foodActions.updateNotification("Can't fetch food data. Please try again later."))
+  }
 };
 
 export const foodActions = foodSlice.actions;
-
-// SUSHI: 46
-// PIZZA: 38
-// HOT MEALS: 39
-// DESSERTS: 38
-// DRINKS: 39

@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import "./App.css";
-import FoodCard from "./components/FoodCard/FoodCard";
-import type { FoodType } from "./components/FoodCard/FoodCard";
+import FoodCard, {FoodType} from "./components/FoodCard/FoodCard";
 import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
 import { fetchFoodData, foodActions } from "./store/foodSlice";
 import { useAppSelector, useAppDispatch } from "./store/hooks";
@@ -10,15 +9,17 @@ import SearchBox from "./components/SearchBox/SearchBox";
 
 function App() {
   const [categories, setCategories] = useState([]);
-  const { foodList, pagination, searchQuery } = useAppSelector((s) => s.food);
+  const { foodList, pagination, search, notification } = useAppSelector((s) => s.food);
   const dispatch = useAppDispatch();
-  console.log(foodList.showed);
 
   useEffect(() => {
-    fetch("https://run.mocky.io/v3/f25ced0a-9ff7-4996-bdc7-430f281c48db")
+    fetch(process.env.REACT_APP_CATEGORY_API as string)
       .then((response) => response.json())
       .then((data) => setCategories(data))
-      .catch((e) => console.error(e));
+      .catch((e) => {
+        console.error(e)
+        dispatch(foodActions.updateNotification("Can't fetch category data. Please try again later."))
+      });
 
     dispatch(fetchFoodData());
   }, [dispatch]);
@@ -27,13 +28,16 @@ function App() {
     <div className="App">
       <div className="container">
         <SearchBox />
-          <div className="search-result-noti">
-            {searchQuery && !pagination.hasMore && (
-              <>
-                {foodList.showed.length <= 1 ? `There is ${foodList.showed.length} result.` : `There are ${foodList.showed.length} results.`}
-              </>
-            )}
-          </div>
+        <div className="search-result-noti">
+          {search.keyword && (
+            <>
+              {search.resultNo <= 1
+                ? `There is ${search.resultNo} result.`
+                : `There are ${search.resultNo} results.`}
+            </>
+          )}
+        </div>
+        {notification && <span>{notification}</span>}
         {!!categories.length && <CategoryFilter categories={categories} />}
         {!!foodList.showed.length && (
           <div className="wrapper">

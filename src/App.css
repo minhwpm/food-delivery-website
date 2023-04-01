@@ -288,13 +288,25 @@
 }
 
 /* SEARCH */
-.search-box {
+.search-icon {
+  position: absolute;
+  padding: 13px 0 13px 15px;
+  min-width: 40px;
+}
+
+.search-field {
   margin-bottom: 20px;
-  padding: 12px 16px;
-  min-width: 250px;
+  padding: 12px 16px 12px 36px;
+  width: 350px;
   border-radius: 10px;
   border: 2px solid #F0F0F1;
+  font-size: 1rem;
 }
 .search-result-noti {
   height: 20px;
+}
+@media only screen and (max-width: 400px) {
+  .search-field {
+    width: 100%;
+  }
 }
