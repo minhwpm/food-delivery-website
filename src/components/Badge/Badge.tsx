@@ -1,16 +1,16 @@
 import React from "react";
-import type { PromotionType } from "../FoodCard/FoodCard";
+import { PromotionType } from "../FoodCard/FoodCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faGift, faPercent } from "@fortawesome/free-solid-svg-icons";
 
 const Badge: React.FC<{ type: PromotionType }> = ({ type }) => {
   return (
-    <span className={`badge ${type === "1+1" ? "plus-one" : type}`}>
-      {type === "gift" && <FontAwesomeIcon data-testid="gift" icon={faGift} />}
-      {type === "discount" && (
-        <FontAwesomeIcon data-testid="discount" icon={faPercent} />
+    <span className={`badge ${type === PromotionType.plusOne ? "plus-one" : type}`}>
+      {type === PromotionType.gift && <FontAwesomeIcon data-testid={PromotionType.gift} icon={faGift} />}
+      {type === PromotionType.discount && (
+        <FontAwesomeIcon data-testid={PromotionType.discount} icon={faPercent} />
       )}
-      {type === "1+1" && type}
+      {type === PromotionType.plusOne && type}
     </span>
   );
 };

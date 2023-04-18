@@ -1,11 +1,11 @@
 import { render, screen } from '@testing-library/react';
-import FoodCard, { FoodType } from './FoodCard';
+import FoodCard, { FoodType, PromotionType } from './FoodCard';
 
 const mockData: FoodType = {
   id: "001",
   index: 0,
   rating: 4,
-  promotion: "1+1",
+  promotion: PromotionType.plusOne,
   isNew: true,
   categoryId: "",
   minCookTime: 20,

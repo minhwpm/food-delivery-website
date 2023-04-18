@@ -4,7 +4,7 @@ import { foodActions } from "../../store/foodSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 
-const SearchBox: React.FC = () => {
+const SearchBox = () => {
   const dispatch = useAppDispatch();
   return (
     <form className="search-box">

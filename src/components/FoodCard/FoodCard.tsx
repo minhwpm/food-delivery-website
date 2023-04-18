@@ -2,7 +2,11 @@ import Badge from "../Badge/Badge"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
 
-export type PromotionType = '1+1' | 'gift' | 'discount'
+export enum PromotionType {
+  plusOne = '1+1',
+  gift = 'gift',
+  discount = 'discount',
+}
 export type FoodType = {
   id: string
   index: number
