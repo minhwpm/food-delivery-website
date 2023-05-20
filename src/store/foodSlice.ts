@@ -1,7 +1,7 @@
 import { Dispatch, createSlice } from "@reduxjs/toolkit";
 import type { FoodType } from "../components/FoodCard/FoodCard";
 
-const pageSize = 9;
+const pageSize = 12;
 
 interface FoodState {
   search: {

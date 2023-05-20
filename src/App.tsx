@@ -5,7 +5,7 @@ import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
 import { fetchFoodData, foodActions } from "./store/foodSlice";
 import { useAppSelector, useAppDispatch } from "./store/hooks";
 import Button from "./components/Button/Button";
-import SearchBox from "./components/SearchBox/SearchBox";
+import Header from "./components/Header/Header";
 
 function App() {
   const [categories, setCategories] = useState([]);
@@ -26,8 +26,8 @@ function App() {
 
   return (
     <div className="App">
+      <Header />
       <div className="container">
-        <SearchBox />
         <div className="search-result-noti">
           {search.keyword && (
             <>
@@ -47,9 +47,11 @@ function App() {
               ))}
             </div>
             {pagination.hasMore ? (
-              <Button onClick={() => dispatch(foodActions.nextPage())}>
-                + Show more
-              </Button>
+              <div className="text-center">
+                <Button onClick={() => dispatch(foodActions.nextPage())}>
+                  + Show more
+                </Button>
+              </div>
             ) : (
               <div className="text-center">No more results</div>
             )}
