@@ -1,11 +1,11 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Badge component renders correctly when (promotion) type = 1+1 1`] = `
+exports[`Badge component renders correctly when (promotion) type = 1 + 1 1`] = `
 <div>
   <span
     class="badge plus-one"
   >
-    1+1
+    1 + 1
   </span>
 </div>
 `;

@@ -3,11 +3,11 @@ import Badge from './Badge';
 import { PromotionType } from '../FoodCard/FoodCard';
 
 describe('Badge component', () => {
-  it('renders correctly when (promotion) type = 1+1', () => {
+  it('renders correctly when (promotion) type = 1 + 1', () => {
     const { container } = render(
       <Badge type={PromotionType.plusOne} />
     )
-    expect(screen.getByText("1+1")).toBeDefined()
+    expect(screen.getByText("1 + 1")).toBeDefined()
     expect(container).toMatchSnapshot()
   })
 

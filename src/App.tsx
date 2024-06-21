@@ -1,24 +1,36 @@
 import { useEffect, useState } from "react";
-import "./App.css";
-import FoodCard, {FoodType} from "./components/FoodCard/FoodCard";
-import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
 import { fetchFoodData, foodActions } from "./store/foodSlice";
 import { useAppSelector, useAppDispatch } from "./store/hooks";
+import FoodCard, { FoodType } from "./components/FoodCard/FoodCard";
+import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
 import Button from "./components/Button/Button";
 import Header from "./components/Header/Header";
+import "./App.css";
 
 function App() {
   const [categories, setCategories] = useState([]);
-  const { foodList, pagination, search, notification } = useAppSelector((s) => s.food);
+  const { foodList, pagination, search, notification } = useAppSelector(
+    (s) => s.food
+  );
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     fetch(process.env.REACT_APP_CATEGORY_API as string)
-      .then((response) => response.json())
-      .then((data) => setCategories(data))
+      .then((response) => {
+        console.log("RESPONSE", response);
+        return response.json()
+      })
+      .then((data) => {
+        console.log("DATA", data)
+        setCategories(data)
+      })
       .catch((e) => {
-        console.error(e)
-        dispatch(foodActions.updateNotification("Can't fetch category data. Please try again later."))
+        console.error(e);
+        dispatch(
+          foodActions.updateNotification(
+            "Can't fetch category data. Please try again later."
+          )
+        );
       });
 
     dispatch(fetchFoodData());
@@ -28,6 +40,7 @@ function App() {
     <div className="App">
       <Header />
       <div className="container">
+        {!!categories.length && <CategoryFilter categories={categories} />}
         <div className="search-result-noti">
           {search.keyword && (
             <>
@@ -38,7 +51,6 @@ function App() {
           )}
         </div>
         {notification && <span>{notification}</span>}
-        {!!categories.length && <CategoryFilter categories={categories} />}
         {!!foodList.showed.length && (
           <div className="wrapper">
             <div className="food-list">

@@ -1,9 +1,10 @@
 import Badge from "../Badge/Badge"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar } from '@fortawesome/free-solid-svg-icons'
+import ImageWithFallback from "../ImageWithFallback/ImageWithFallback"
 
 export enum PromotionType {
-  plusOne = '1+1',
+  plusOne = '1 + 1',
   gift = 'gift',
   discount = 'discount',
 }
@@ -26,10 +27,11 @@ export default function FoodCard(props: FoodType) {
   return (
     <div className="food-card">
       {promotion && <Badge type={promotion} />}
-      <img className="thumbnail" src={imageUrl} alt={name} />
+      <ImageWithFallback className="thumbnail" src={imageUrl} alt={name} fallbackSrc="https://via.placeholder.com/400?text=No+Image" />
       <div className="info">
         <h3 className="title">
-          {index} - {name}
+          {/* {index} - {name} */}
+          {name}
         </h3>
         <div className="tag-box">
           <span className="tag">
