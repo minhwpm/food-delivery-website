@@ -8,7 +8,7 @@ exports[`FoodCard component renders correctly 1`] = `
     <span
       class="badge plus-one"
     >
-      1 + 1
+      1+1
     </span>
     <img
       alt="Noodle"

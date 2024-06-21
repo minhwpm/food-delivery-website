@@ -10,6 +10,7 @@ const mockData: FoodType = {
   categoryId: "",
   minCookTime: 20,
   maxCookTime: 30,
+  price: 9,
   restaurant: "Foodie",
   name: "Noodle",
   imageUrl: "https://source.unsplash.com/random/400x400?Noodle"

@@ -4,9 +4,9 @@ import { faStar } from '@fortawesome/free-solid-svg-icons'
 import ImageWithFallback from "../ImageWithFallback/ImageWithFallback"
 
 export enum PromotionType {
-  plusOne = '1 + 1',
-  gift = 'gift',
-  discount = 'discount',
+  plusOne = "1+1",
+  gift = "gift",
+  discount = "discount",
 }
 export type FoodType = {
   id: string
@@ -17,13 +17,14 @@ export type FoodType = {
   categoryId: string
   minCookTime: number 
   maxCookTime: number
+  price: number
   restaurant: string
   name: string
   imageUrl: string
 }
 
 export default function FoodCard(props: FoodType) {
-  const { index, rating, promotion, isNew, minCookTime, maxCookTime, name, imageUrl } = props
+  const { price, rating, promotion, isNew, minCookTime, maxCookTime, name, imageUrl } = props
   return (
     <div className="food-card">
       {promotion && <Badge type={promotion} />}
@@ -33,6 +34,7 @@ export default function FoodCard(props: FoodType) {
           {/* {index} - {name} */}
           {name}
         </h3>
+        
         <div className="tag-box">
           <span className="tag">
             <FontAwesomeIcon icon={faStar} color="#6A6466" />
@@ -40,6 +42,9 @@ export default function FoodCard(props: FoodType) {
           </span>
           <span className="tag">{minCookTime}-{maxCookTime} min</span>
           {isNew && <span className="tag new">New</span>}
+        </div>
+        <div className="price">
+          ${price}
         </div>
       </div>
     </div>

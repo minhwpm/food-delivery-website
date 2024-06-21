@@ -202,7 +202,7 @@
   background: #fff;
   box-shadow: 2px 5px 10px #F0F0F1;
   position: relative;
-  transition: transform 0.5s ease-in-out;
+  transition: transform 0.2s ease-in-out;
   cursor: pointer;
 }
 
@@ -264,12 +264,19 @@
 }
 
 .food-card .title {
-  margin-top: 0;
+  margin: 0;
   font-size: 1rem;
 }
 
 .food-card .info {
-  padding: 20px;
+  padding: 10px 20px 20px;
+}
+
+.food-card .price {
+  font-weight: bold;
+  font-size: 0.8rem;
+  text-align: end;
+  margin-top: 15px;
 }
 
 .food-card .tag-box {
@@ -277,6 +284,7 @@
   flex-wrap: wrap;
   gap: 8px;
   font-size: 0.85rem;
+  margin-top: 15px;
 }
 
 .btn {
