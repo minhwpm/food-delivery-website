@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { fetchFoodData, foodActions } from "./store/foodSlice";
+import { fetchFoodData, updateNotification, nextPage } from "./store/foodSlice";
 import { useAppSelector, useAppDispatch } from "./store/hooks";
-import FoodCard, { FoodType } from "./components/FoodCard/FoodCard";
+import FoodCard, { FoodItem } from "./components/FoodCard/FoodCard";
 import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
 import Button from "./components/Button/Button";
 import Header from "./components/Header/Header";
@@ -9,6 +9,7 @@ import "./App.css";
 
 function App() {
   const [categories, setCategories] = useState([]);
+  
   const { foodList, pagination, search, notification } = useAppSelector(
     (s) => s.food
   );
@@ -27,7 +28,7 @@ function App() {
       .catch((e) => {
         console.error(e);
         dispatch(
-          foodActions.updateNotification(
+          updateNotification(
             "Can't fetch category data. Please try again later."
           )
         );
@@ -39,6 +40,7 @@ function App() {
   return (
     <div className="App">
       <Header />
+      
       <div className="container">
         {!!categories.length && <CategoryFilter categories={categories} />}
         <div className="search-result-noti">
@@ -54,13 +56,13 @@ function App() {
         {!!foodList.showed.length && (
           <div className="wrapper">
             <div className="food-list">
-              {foodList.showed.map((item: FoodType) => (
-                <FoodCard key={item.id} {...item} />
+              {foodList.showed.map((item: FoodItem) => (
+                <FoodCard key={item.id} item={item} />
               ))}
             </div>
             {pagination.hasMore ? (
               <div className="text-center">
-                <Button onClick={() => dispatch(foodActions.nextPage())}>
+                <Button onClick={() => dispatch(nextPage())}>
                   + Show more
                 </Button>
               </div>

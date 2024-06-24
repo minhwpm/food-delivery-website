@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { foodActions } from "../../store/foodSlice";
+import { changeCategory } from "../../store/foodSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter, faXmark } from '@fortawesome/free-solid-svg-icons'
 
@@ -33,7 +33,7 @@ const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
       <ul className={`category-filter-mobile ${!isShowed && "hidden"}`}>
         <li
           onClick={() => {
-            dispatch(foodActions.changeCategory({ id: "all", name: "All" }));
+            dispatch(changeCategory({ id: "all", name: "All" }));
           }}
           key="all"
           className={selectedCategory.id === "all" ? "active" : ""}
@@ -44,7 +44,7 @@ const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
           <li
             onClick={() => {
               dispatch(
-                foodActions.changeCategory({ id: item.id, name: item.name })
+                changeCategory({ id: item.id, name: item.name })
               );
             }}
             key={item.id}
@@ -57,7 +57,7 @@ const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
       <ul className="category-filter">
         <li
           onClick={() => {
-            dispatch(foodActions.changeCategory({ id: "all", name: "All" }));
+            dispatch(changeCategory({ id: "all", name: "All" }));
           }}
           key="all"
           className={selectedCategory.id === "all" ? "active" : ""}
@@ -69,7 +69,7 @@ const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
             onClick={() => {
               // setActiveKey(item.id)
               dispatch(
-                foodActions.changeCategory({ id: item.id, name: item.name })
+                changeCategory({ id: item.id, name: item.name })
               );
             }}
             key={item.id}

@@ -3,11 +3,16 @@ import React, { useState } from 'react';
 interface ImageWithFallbackProps {
   className: string;
   src: string;
-  fallbackSrc: string;
   alt: string;
+  fallbackSrc?: string;
 }
 
-const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({ className, src, fallbackSrc, alt }) => {
+const ImageWithFallback: React.FC<ImageWithFallbackProps> = ({
+  className,
+  src,
+  alt,
+  fallbackSrc = "https://via.placeholder.com/400?text=No+Image",
+}) => {
   const [imgSrc, setImgSrc] = useState(src);
 
   return (

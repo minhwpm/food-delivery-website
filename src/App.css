@@ -176,21 +176,22 @@
   margin: 20px 0 50px;
   display: grid;
   grid-template-columns: auto;
-  gap: 25px;
+  gap: 30px;
 }
 
-@media only screen and (min-width: 500px) {
+@media only screen and (min-width: 768px) {
   .food-list {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 }
-@media only screen and (min-width: 768px) {
+
+@media only screen and (min-width: 1024px) {
   .food-list {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
 }
 
-@media only screen and (min-width: 1280px) {
+@media only screen and (min-width: 1536px) {
   .food-list {
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -198,27 +199,19 @@
 
 
 .food-card {
+  display: flex;
   border-radius: 20px;
   background: #fff;
   box-shadow: 2px 5px 10px #F0F0F1;
   position: relative;
-  transition: transform 0.2s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out;
   cursor: pointer;
 }
 
 .food-card:hover {
-  transform: scale(1.05);
-  transition: transform 0.5s ease-in-out;
+  transition: box-shadow 0.3s ease-in-out;
   box-shadow: 3px 8px 15px #aaa;
 
-}
-
-.food-card .thumbnail {
-  width: 100%;
-  aspect-ratio: 8/5;
-  object-fit: cover;
-  border-top-right-radius: 20px;
-  border-top-left-radius: 20px;
 }
 
 .food-card .tag {
@@ -266,17 +259,21 @@
 .food-card .title {
   margin: 0;
   font-size: 1rem;
+  line-height: 1.5em;
 }
 
 .food-card .info {
-  padding: 10px 20px 20px;
+  padding: 40px 20px 10px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .food-card .price {
   font-weight: bold;
-  font-size: 0.8rem;
-  text-align: end;
-  margin-top: 15px;
+  font-size: 1rem;
+  padding-bottom: 4px;
+  margin-top: auto;
 }
 
 .food-card .tag-box {
@@ -287,14 +284,54 @@
   margin-top: 15px;
 }
 
+.thumbnail-wrapper {
+  position: relative;
+  padding: 10px;
+  flex: 1;
+}
+
+.thumbnail {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 15px;
+}
+
+.add-to-cart-btn-wrapper {
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 12px 15px;
+  border-top-left-radius: 25px;
+  border-bottom-right-radius: 20px;
+}
+.add-to-cart-btn {
+  border-radius: 100%;
+  width: 30px;
+  height: 30px;
+  border: none;
+  cursor: pointer;
+  background-color: #000;
+  color: #fff;
+  transition: all 0.3s ease-in-out;
+}
+
+.add-to-cart-btn:hover {
+  background-color: var(--primary-color);
+  color: #000;
+  transition: all 0.3s ease-in-out;
+}
+
 .btn {
-  padding: 15px 30px;
+  padding: 15px 25px;
   border-radius: 30px;
   border: 2px solid var(--primary-color);
   background: #fff;
   cursor: pointer;
   font-size: 1rem;
   transition: background 0.5s ease-in-out;
+  min-width: 130px;
 }
 
 .btn:hover {
@@ -337,15 +374,14 @@
 .header {
   background-color: #fff;
   position: fixed;
+  display: flex;
+  align-items: center;
+  padding: 12px;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 10;
   box-shadow: rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0) 0px 0px 0px 0px, rgba(0, 0, 0, 0.1) 0px 1px 3px 0px, rgba(0, 0, 0, 0.06) 0px 1px 2px 0px;
-}
-.header .container {
-  display: flex;
-  align-items: center;
 }
 .logo-text {
   color: var(--primary-color);
@@ -356,9 +392,80 @@
 .logo-text svg {
   margin-right: 8px;
 }
+
+.cart-container {
+  position: relative;
+  margin-right: 20px;
+  margin-left: auto;
+}
+
 .cart-icon {
   color: var(--primary-color);
   font-size: 25px;
-  margin-right: 20px;
-  margin-left: auto;
+  cursor: pointer;
+}
+
+.cart-dropdown {
+  position: absolute;
+  top: 2.5rem;
+  right: -2.5rem;
+  padding: 20px;
+  background-color: white;
+  color: black;
+  border: 1px solid #ddd;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  min-width: 250px;
+  z-index: 1000;
+  border-radius: 20px;
+}
+
+.cart-dropdown-title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.cart-item-list {
+  display: flex;
+  flex-direction: column;
+}
+.cart-item {
+  display: flex;
+  gap: 15px;
+  padding: 10px 0px;
+  border-bottom: 1px #eee solid;
+}
+
+.cart-item-quantity {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  background: #000;
+  color: #fff;
+  flex-shrink: 0;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.cart-item-name {
+  margin: 0;
+  align-self: center;
+}
+
+.cart-item .cart-thumbnail-wrapper {
+  width: 30% ;
+  flex-shrink: 0;
+}
+
+.remove-btn {
+  border: none;
+  padding: 10px;
+  background-color: transparent;
+  cursor: pointer;
+}
+
+.btn-container {
+  display: flex;
+  gap: 10px;
 }

@@ -1,5 +1,5 @@
 import { Dispatch, createSlice } from "@reduxjs/toolkit";
-import type { FoodType } from "../components/FoodCard/FoodCard";
+import type { FoodItem } from "../components/FoodCard/FoodCard";
 
 const pageSize = 12;
 
@@ -17,8 +17,8 @@ interface FoodState {
     name: string;
   };
   foodList: {
-    all: Array<FoodType>;
-    showed: Array<FoodType>;
+    all: Array<FoodItem>;
+    showed: Array<FoodItem>;
   };
   notification: string
 }
@@ -43,7 +43,7 @@ const initialState: FoodState = {
   notification: ""
 };
 
-function filterData(data: Array<FoodType>, state: FoodState): [Array<FoodType>, number] {
+function filterData(data: Array<FoodItem>, state: FoodState): [Array<FoodItem>, number] {
   //Time complex O(n) with n=200 (number of items)
   const filtered = data
     .filter((item) => {
@@ -57,7 +57,7 @@ function filterData(data: Array<FoodType>, state: FoodState): [Array<FoodType>, 
     return [filtered.slice(0, pageSize), filtered.length];
 }
 
-export const foodSlice = createSlice({
+const foodSlice = createSlice({
   name: "food",
   initialState,
   reducers: {
@@ -106,11 +106,12 @@ export const fetchFoodData = () => async (dispatch: Dispatch) => {
   try {
     const res = await fetch(process.env.REACT_APP_FOOD_API as string);
     const data = await res.json();
-    dispatch(foodActions.initFoodData(data))
+    dispatch(initFoodData(data))
   } catch(e) {
     console.error(e)
-    dispatch(foodActions.updateNotification("Can't fetch food data. Please try again later."))
+    dispatch(updateNotification("Can't fetch food data. Please try again later."))
   }
 };
 
-export const foodActions = foodSlice.actions;
+export const {initFoodData, changeCategory, searchByName, nextPage, updateNotification} = foodSlice.actions;
+export default foodSlice;

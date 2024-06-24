@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
-import FoodCard, { FoodType, PromotionType } from './FoodCard';
+import FoodCard, { FoodItem, PromotionType } from './FoodCard';
 
-const mockData: FoodType = {
+const mockData: FoodItem = {
   id: "001",
   index: 0,
   rating: 4,
@@ -19,7 +19,7 @@ const mockData: FoodType = {
 describe('FoodCard component', () => {
   it('renders correctly', () => {
     const { container } = render(
-      <FoodCard  {...mockData} />
+      <FoodCard  item={mockData} />
     )
     const el = screen.getByText(/Noodle/i)
     expect(el).toBeDefined()
