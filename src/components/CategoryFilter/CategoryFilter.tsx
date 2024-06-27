@@ -1,20 +1,21 @@
 import React, { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { changeCategory } from "../../store/foodSlice";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faFilter, faXmark } from '@fortawesome/free-solid-svg-icons'
-import styles from "./CategoryFilter.module.scss"
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFilter, faXmark } from "@fortawesome/free-solid-svg-icons";
+import styles from "./CategoryFilter.module.scss";
+import classNames from "classnames";
 
 interface CategoryType {
   id: string;
   name: string;
-};
+}
 
 const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
   categories,
 }) => {
   const { selectedCategory } = useAppSelector((s) => s.food);
-  const [ isShowed, setShowed ] = useState(false) //For Category filter mobile version
+  const [isShowed, setShowed] = useState(false); //For Category filter mobile version
   const dispatch = useAppDispatch();
 
   return (
@@ -23,24 +24,34 @@ const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
         className={styles["category-switcher"]}
         onClick={() => setShowed(true)}
       >
-        <span className={styles["left"]}>
+        <div className={styles["left"]}>
           <FontAwesomeIcon icon={faFilter} color="#6A6466" />
-        </span>
-        <span className={styles["right"]}>{selectedCategory.name}</span>
+        </div>
+        <div className={styles["right"]}>{selectedCategory.name}</div>
       </div>
       <span
-        className={styles[`close-btn ${!isShowed && "hidden"}`]}
+        className={classNames(
+          styles["close-btn"], 
+          { "hidden": !isShowed }
+        )}
         onClick={() => setShowed(false)}
       >
         <FontAwesomeIcon icon={faXmark} />
       </span>
-      <ul className={styles[`category-list-mobile ${!isShowed && "hidden"}`]}>
+      <ul
+        className={classNames(
+          styles["category-list-mobile"],
+          { "hidden": !isShowed }
+        )}
+      >
         <li
           onClick={() => {
             dispatch(changeCategory({ id: "all", name: "All" }));
           }}
           key="all"
-          className={selectedCategory.id === "all" ? "active" : ""}
+          className={classNames(
+            { [styles.active]: selectedCategory.id === "all" }
+          )}
         >
           All
         </li>
@@ -50,7 +61,9 @@ const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
               dispatch(changeCategory({ id: item.id, name: item.name }));
             }}
             key={item.id}
-            className={selectedCategory.id === item.id ? "active" : ""}
+            className={classNames(
+              { [styles.active]: selectedCategory.id === item.id }
+            )}
           >
             {item.name}
           </li>
@@ -62,18 +75,21 @@ const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
             dispatch(changeCategory({ id: "all", name: "All" }));
           }}
           key="all"
-          className={selectedCategory.id === "all" ? "active" : ""}
+          className={classNames(
+            { [styles.active]: selectedCategory.id === "all" }
+          )}
         >
           All
         </li>
         {categories.map((item: CategoryType) => (
           <li
             onClick={() => {
-              // setActiveKey(item.id)
               dispatch(changeCategory({ id: item.id, name: item.name }));
             }}
             key={item.id}
-            className={selectedCategory.id === item.id ? "active" : ""}
+            className={classNames(
+              { [styles.active]: selectedCategory.id === item.id }
+            )}
           >
             {item.name}
           </li>

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping, faUtensils } from "@fortawesome/free-solid-svg-icons";
+import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import SearchBox from "../SearchBox/SearchBox";
 import Button from "../Button/Button";
 import CartDropdown from "../CartDropdown/CartDropdown";
@@ -13,7 +13,6 @@ const Header = () => {
     <nav className={styles.header}>
       <div className={styles["logo-text"]}>
         {/* @TODO add ./ link (homepage) */}
-        <FontAwesomeIcon icon={faUtensils} />
         Foodie
       </div>
       <SearchBox />
