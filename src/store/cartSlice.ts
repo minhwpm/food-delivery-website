@@ -22,7 +22,7 @@ const cartSlice = createSlice({
       if (existingItem) {
         existingItem.quantity += 1;
       } else {
-        state.items.push({ ...action.payload, quantity: 1 });
+        state.items.unshift({ ...action.payload, quantity: 1 });
       }
     },
     removeFromCart(state, action) {

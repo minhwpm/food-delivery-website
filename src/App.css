@@ -260,6 +260,7 @@
   margin: 0;
   font-size: 1rem;
   line-height: 1.5em;
+  font-weight: normal;
 }
 
 .food-card .info {
@@ -409,30 +410,44 @@
   position: absolute;
   top: 2.5rem;
   right: -2.5rem;
-  padding: 20px;
   background-color: white;
-  color: black;
-  border: 1px solid #ddd;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  min-width: 250px;
+  border: 1px solid #ddd;
   z-index: 1000;
   border-radius: 20px;
+  min-width: 400px;
+}
+
+.cart-dropdown-wrapper {
+  overflow: hidden;
+  color: black;
 }
 
 .cart-dropdown-title {
   font-weight: bold;
   margin: 0;
+  padding: 10px 20px;
+  border-bottom: 1px #eee solid;
+}
+
+.cart-empty {
+  padding: 20px;
 }
 
 .cart-item-list {
-  display: flex;
-  flex-direction: column;
+  overflow-y: auto;
+  max-height: 50vh;
+  scrollbar-width: none;
 }
 .cart-item {
   display: flex;
   gap: 15px;
-  padding: 10px 0px;
+  padding: 10px 20px;
   border-bottom: 1px #eee solid;
+}
+
+.cart-item:last-child {
+  border-bottom: none;
 }
 
 .cart-item-quantity {
@@ -448,6 +463,12 @@
   align-items: center;
 }
 
+.cart-item-subtotal {
+  display: flex;
+  flex-direction: column;
+  margin-left: auto;
+}
+
 .cart-item-name {
   margin: 0;
   align-self: center;
@@ -458,9 +479,19 @@
   flex-shrink: 0;
 }
 
+.cart-total {
+  border-top: 1px #eee solid;
+  padding: 20px;
+}
+
+.cart-total-amount {
+  text-align: end;
+  margin: 0;
+}
+
 .remove-btn {
   border: none;
-  padding: 10px;
+  padding: 10px 0;
   background-color: transparent;
   cursor: pointer;
 }
@@ -468,4 +499,8 @@
 .btn-container {
   display: flex;
   gap: 10px;
+}
+
+.btn-container > * {
+  flex: 1;
 }

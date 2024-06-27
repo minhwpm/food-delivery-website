@@ -9,50 +9,62 @@ const CartDropdown = () => {
 
   return (
     <div className="cart-dropdown">
-      <h3 className="cart-dropdown-title">Cart</h3>
-      {items.length === 0 ? (
-        <p>Your cart is empty</p>
-      ) : (
-        <div className="cart-item-list">
-          {items.map((item) => (
-            <div key={item.id} className="cart-item">
-              <div className="cart-item-quantity">
-                {item.quantity}x
-              </div>
+      <div className="cart-dropdown-wrapper">
+        <h3 className="cart-dropdown-title">Cart</h3>
+        {items.length === 0 ? (
+          <div className="cart-empty">
+            Your cart is empty
+          </div>
+        ) : (
+          <>
+            <div className="cart-item-list">
+              {items.map((item) => (
+                <div key={item.id} className="cart-item">
+                  <div className="cart-item-quantity">{item.quantity}x</div>
 
-              <div className="cart-thumbnail-wrapper">
-                <ImageWithFallback
-                  className="thumbnail"
-                  src={item.imageUrl}
-                  alt={item.name}
-                />
-              </div>
-              <h4 className="cart-item-name">{item.name}</h4>
-              <div className="">
-                <p>${item.price.toFixed(2)}</p>
-                <button
-                  className="remove-btn"
-                  onClick={() => dispatch(removeFromCart(item.id))}
-                >
-                  Remove
-                </button>
+                  <div className="cart-thumbnail-wrapper">
+                    <ImageWithFallback
+                      className="thumbnail"
+                      src={item.imageUrl}
+                      alt={item.name}
+                    />
+                  </div>
+                  <h4 className="cart-item-name">{item.name}</h4>
+                  <div className="cart-item-subtotal">
+                    <p>${item.price.toFixed(2)}</p>
+                    <button
+                      className="remove-btn"
+                      onClick={() => dispatch(removeFromCart(item.id))}
+                    >
+                      Remove
+                    </button>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="cart-total">
+              <h3 className="cart-total-amount">
+                Total: $
+                {items
+                  .reduce(
+                    (total, item) => total + item.price * item.quantity,
+                    0
+                  )
+                  .toFixed(2)}
+              </h3>
+              <p>Shipping and taxes calculated at checkout.</p>
+              <div className="btn-container">
+                <Button onClick={() => console.log("View Cart")}>
+                  View Cart
+                </Button>
+                <Button onClick={() => console.log("Checkout")}>
+                  Checkout
+                </Button>
               </div>
             </div>
-          ))}
-          <hr />
-          <h3>
-            Total: $
-            {items
-              .reduce((total, item) => total + item.price * item.quantity, 0)
-              .toFixed(2)}
-          </h3>
-          <p>Shipping and taxes calculated at checkout.</p>
-          <div className="btn-container">
-            <Button onClick={() => console.log("View Cart")}>View Cart</Button>
-            <Button onClick={() => console.log("Checkout")}>Checkout</Button>
-          </div>
-        </div>
-      )}
+          </>
+        )}
+      </div>
     </div>
   );
 }
