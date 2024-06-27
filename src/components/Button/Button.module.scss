@@ -1,0 +1,15 @@
+.button {
+  padding: 15px 25px;
+  border-radius: 30px;
+  border: 2px solid var(--primary-color);
+  background: #fff;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background 0.5s ease-in-out;
+  min-width: 130px;
+  
+  &:hover {
+    background: var(--primary-color);
+    transition: background 0.5s ease-in-out;
+  }
+}

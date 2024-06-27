@@ -1,4 +1,5 @@
 import React from "react";
+import styles from "./Button.module.scss"
 
 interface ButtonProps {
   children: React.ReactNode;
@@ -7,7 +8,7 @@ interface ButtonProps {
 
 const Button: React.FC<ButtonProps> = ({ children, onClick }) => {
   return (
-    <button className="btn" onClick={onClick}>
+    <button className={styles.button} onClick={onClick}>
       {children}
     </button>
   );

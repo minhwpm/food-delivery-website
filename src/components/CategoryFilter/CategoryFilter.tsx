@@ -3,8 +3,9 @@ import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { changeCategory } from "../../store/foodSlice";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter, faXmark } from '@fortawesome/free-solid-svg-icons'
+import styles from "./CategoryFilter.module.scss"
 
-type CategoryType = {
+interface CategoryType {
   id: string;
   name: string;
 };
@@ -17,20 +18,23 @@ const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
   const dispatch = useAppDispatch();
 
   return (
-    <div className="category-wrapper">
-      <div className="category-switcher" onClick={() => setShowed(true)}>
-        <span className="left">
+    <div>
+      <div
+        className={styles["category-switcher"]}
+        onClick={() => setShowed(true)}
+      >
+        <span className={styles["left"]}>
           <FontAwesomeIcon icon={faFilter} color="#6A6466" />
         </span>
-        <span className="right">{selectedCategory.name}</span>
+        <span className={styles["right"]}>{selectedCategory.name}</span>
       </div>
       <span
-        className={`close-btn ${!isShowed && "hidden"}`}
+        className={styles[`close-btn ${!isShowed && "hidden"}`]}
         onClick={() => setShowed(false)}
       >
         <FontAwesomeIcon icon={faXmark} />
       </span>
-      <ul className={`category-filter-mobile ${!isShowed && "hidden"}`}>
+      <ul className={styles[`category-list-mobile ${!isShowed && "hidden"}`]}>
         <li
           onClick={() => {
             dispatch(changeCategory({ id: "all", name: "All" }));
@@ -43,9 +47,7 @@ const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
         {categories.map((item: CategoryType) => (
           <li
             onClick={() => {
-              dispatch(
-                changeCategory({ id: item.id, name: item.name })
-              );
+              dispatch(changeCategory({ id: item.id, name: item.name }));
             }}
             key={item.id}
             className={selectedCategory.id === item.id ? "active" : ""}
@@ -54,7 +56,7 @@ const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
           </li>
         ))}
       </ul>
-      <ul className="category-filter">
+      <ul className={styles["category-list"]}>
         <li
           onClick={() => {
             dispatch(changeCategory({ id: "all", name: "All" }));
@@ -68,9 +70,7 @@ const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
           <li
             onClick={() => {
               // setActiveKey(item.id)
-              dispatch(
-                changeCategory({ id: item.id, name: item.name })
-              );
+              dispatch(changeCategory({ id: item.id, name: item.name }));
             }}
             key={item.id}
             className={selectedCategory.id === item.id ? "active" : ""}

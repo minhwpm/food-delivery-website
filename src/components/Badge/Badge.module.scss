@@ -1,0 +1,20 @@
+.badge {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  padding: 8px 22px;
+  color: white;
+  font-weight: bold;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  &.gift {
+    background: var(--blue-color);
+  }
+  &.discount {
+    background: var(--red-color);
+  }
+  &.plus-one {
+    background: var(--purple-color);
+  }
+}

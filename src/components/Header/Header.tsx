@@ -4,21 +4,22 @@ import { faCartShopping, faUtensils } from "@fortawesome/free-solid-svg-icons";
 import SearchBox from "../SearchBox/SearchBox";
 import Button from "../Button/Button";
 import CartDropdown from "../CartDropdown/CartDropdown";
+import styles from "./Header.module.scss"
 
 const Header = () => {
   const [cartOpen, setCartOpen] = useState(false)
 
   return (
-    <nav className="header">
-      <div className="logo-text">
+    <nav className={styles.header}>
+      <div className={styles["logo-text"]}>
         {/* @TODO add ./ link (homepage) */}
         <FontAwesomeIcon icon={faUtensils} />
         Foodie
       </div>
       <SearchBox />
-      <div className="cart-container">
+      <div className={styles["cart-container"]}>
         <FontAwesomeIcon
-          className="cart-icon"
+          className={styles["cart-icon"]}
           icon={faCartShopping}
           onClick={() => setCartOpen(!cartOpen)}
         />

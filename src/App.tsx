@@ -1,16 +1,16 @@
 import { useEffect, useState } from "react";
-import { fetchFoodData, updateNotification, nextPage } from "./store/foodSlice";
+import { fetchFoodData, updateNotification } from "./store/foodSlice";
 import { useAppSelector, useAppDispatch } from "./store/hooks";
-import FoodCard, { FoodItem } from "./components/FoodCard/FoodCard";
 import CategoryFilter from "./components/CategoryFilter/CategoryFilter";
-import Button from "./components/Button/Button";
 import Header from "./components/Header/Header";
+import SearchResultNotification from "./components/SearchResultNotification/SearchResultNotification";
+import FoodList from "./components/FoodList/FoodList";
 import "./App.css";
 
 function App() {
   const [categories, setCategories] = useState([]);
   
-  const { foodList, pagination, search, notification } = useAppSelector(
+  const { foodList, notification } = useAppSelector(
     (s) => s.food
   );
   const dispatch = useAppDispatch();
@@ -40,36 +40,12 @@ function App() {
   return (
     <div className="App">
       <Header />
-      
       <div className="container">
         {!!categories.length && <CategoryFilter categories={categories} />}
-        <div className="search-result-noti">
-          {search.keyword && (
-            <>
-              {search.resultNo <= 1
-                ? `There is ${search.resultNo} result.`
-                : `There are ${search.resultNo} results.`}
-            </>
-          )}
-        </div>
+        <SearchResultNotification />
         {notification && <span>{notification}</span>}
         {!!foodList.showed.length && (
-          <div className="wrapper">
-            <div className="food-list">
-              {foodList.showed.map((item: FoodItem) => (
-                <FoodCard key={item.id} item={item} />
-              ))}
-            </div>
-            {pagination.hasMore ? (
-              <div className="text-center">
-                <Button onClick={() => dispatch(nextPage())}>
-                  + Show more
-                </Button>
-              </div>
-            ) : (
-              <div className="text-center">No more results</div>
-            )}
-          </div>
+          <FoodList />
         )}
       </div>
     </div>
