@@ -104,7 +104,7 @@ const foodSlice = createSlice({
 
 export const fetchFoodData = () => async (dispatch: Dispatch) => {
   try {
-    const res = await fetch(process.env.NEXT_PUBLIC_FOOD_API as string);
+    const res = await fetch(process.env.FOOD_API as string);
     if (!res.ok) {
       throw new Error(`HTTP error! Status: ${res.status}`);
     }
