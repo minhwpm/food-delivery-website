@@ -1,3 +1,5 @@
+"use client";
+
 import React, { useState } from "react";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { changeCategory } from "../../store/foodSlice";

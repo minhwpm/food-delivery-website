@@ -1,3 +1,5 @@
+"use client";
+
 import Badge from "../Badge/Badge"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faPlus } from '@fortawesome/free-solid-svg-icons'

@@ -28,3 +28,19 @@ code {
 .hidden {
   display: none !important;
 }
+
+.container {
+  padding: 20px;
+  max-width: 1280px;
+  margin: 70px auto;
+  overflow-x: hidden;
+}
+
+.align-center {
+  display: block;
+  margin: auto;
+}
+
+.text-center {
+  text-align: center;
+}
