@@ -16,9 +16,9 @@ async function fetchData(apiEndpoint: string) {
 
 export default async function Home() {
 
-  const categories = await fetchData(process.env.REACT_APP_CATEGORY_API as string)
-  const foodItems = await fetchData(process.env.REACT_APP_FOOD_API as string)
-  // console.log(foodItems)
+  const categories = await fetchData(process.env.NEXT_PUBLIC_CATEGORY_API as string)
+  const foodItems = await fetchData(process.env.NEXT_PUBLIC_FOOD_API as string)
+  console.log(foodItems)
 
   return (
     <main>
