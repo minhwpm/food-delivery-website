@@ -1,0 +1,42 @@
+[
+  {
+    "id": "001",
+    "name": "Sushi"
+  },
+  {
+    "id": "002",
+    "name": "Soda"
+  },
+  {
+    "id": "003",
+    "name": "Pizza"
+  },
+  {
+    "id": "004",
+    "name": "Burger"
+  },
+  {
+    "id": "005",
+    "name": "Salad"
+  },
+  {
+    "id": "006",
+    "name": "Pasta"
+  },
+  {
+    "id": "007",
+    "name": "Steak"
+  },
+  {
+    "id": "008",
+    "name": "Noodle"
+  },
+  {
+    "id": "009",
+    "name": "Dessert"
+  },
+  {
+    "id": "010",
+    "name": "Soup"
+  }
+]
