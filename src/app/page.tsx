@@ -18,7 +18,6 @@ export default async function Home() {
 
   const categories = await fetchData(process.env.CATEGORY_API as string)
   const foodItems = await fetchData(process.env.FOOD_API as string)
-  console.log(foodItems)
 
   return (
     <main>
