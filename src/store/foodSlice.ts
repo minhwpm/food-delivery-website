@@ -105,6 +105,9 @@ const foodSlice = createSlice({
 export const fetchFoodData = () => async (dispatch: Dispatch) => {
   try {
     const res = await fetch(process.env.REACT_APP_FOOD_API as string);
+    if (!res.ok) {
+      throw new Error(`HTTP error! Status: ${res.status}`);
+    }
     const data = await res.json();
     dispatch(initFoodData(data))
   } catch(e) {

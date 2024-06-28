@@ -1,3 +1,5 @@
+"use client";
+
 import { useAppSelector } from "../../store/hooks";
 import styles from "./SearchResultNotification.module.scss"
 

@@ -1,3 +1,5 @@
+"use client";
+
 import { useAppDispatch } from "../../store/hooks";
 import { searchByName } from "../../store/foodSlice";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";

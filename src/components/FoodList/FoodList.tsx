@@ -1,16 +1,30 @@
-import { nextPage } from "../../store/foodSlice";
+"use client";
+
+import { useEffect } from "react";
+import { initFoodData, nextPage } from "../../store/foodSlice";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import Button from "../Button/Button";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faPlus } from '@fortawesome/free-solid-svg-icons'
 import FoodCard, { FoodItem } from "../FoodCard/FoodCard";
+import Button from "../Button/Button";
+import SearchResultNotification from "../../components/SearchResultNotification/SearchResultNotification";
 import styles from "./FoodList.module.scss"
 
-const FoodList: React.FC = () => {
+
+const FoodList: React.FC<{
+  foodItems: FoodItem[];
+}> = ({ foodItems }) => {
   const dispatch = useAppDispatch();
-  const { foodList, pagination } = useAppSelector(
-    (s) => s.food
-  );
+  const { foodList, pagination, notification } = useAppSelector((s) => s.food);
+
+  useEffect(() => {
+    dispatch(initFoodData(foodItems))
+  }, [dispatch, foodItems])
+
   return (
     <div className={styles["food-list"]}>
+      <SearchResultNotification />
+      {notification && <span>{notification}</span>}
       <div className={styles.grid}>
         {foodList.showed.map((item: FoodItem) => (
           <FoodCard key={item.id} item={item} />
@@ -18,7 +32,9 @@ const FoodList: React.FC = () => {
       </div>
       {pagination.hasMore ? (
         <div className="text-center">
-          <Button onClick={() => dispatch(nextPage())}>+ Show more</Button>
+          <Button onClick={() => dispatch(nextPage())}>
+            <FontAwesomeIcon icon={faPlus} color="" /> Show more
+          </Button>
         </div>
       ) : (
         <div className="text-center">No more results</div>

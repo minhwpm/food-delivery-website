@@ -13,11 +13,27 @@
 
 # misc
 .DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+*.pem
 
+# local env files
+.env
+.env*.local
+
+# debug
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# next.js
+/.next/
+/out/
+.next
+next-env.d.ts
+dist
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts

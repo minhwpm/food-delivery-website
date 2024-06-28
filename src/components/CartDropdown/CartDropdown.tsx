@@ -1,3 +1,5 @@
+"use client";
+
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { removeFromCart } from "../../store/cartSlice"
 import Button from '../Button/Button';
