@@ -16,8 +16,8 @@ async function fetchData(apiEndpoint: string) {
 
 export default async function Home() {
 
-  const categories = await fetchData(process.env.NEXT_PUBLIC_CATEGORY_API as string)
-  const foodItems = await fetchData(process.env.NEXT_PUBLIC_FOOD_API as string)
+  const categories = await fetchData(process.env.CATEGORY_API as string)
+  const foodItems = await fetchData(process.env.FOOD_API as string)
   console.log(foodItems)
 
   return (
