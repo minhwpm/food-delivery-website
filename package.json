@@ -2,6 +2,7 @@
   "name": "food-delivery-website",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://minhwpm.github.io/cra-foodie-app",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
@@ -15,7 +16,7 @@
     "@types/react": "^18.0.31",
     "@types/react-dom": "^18.0.11",
     "classnames": "^2.5.1",
-    "node-sass": "^7.0.3",
+    "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-redux": "^8.0.5",
