@@ -27,11 +27,11 @@ const Header = () => {
           icon={faCartShopping}
           onClick={() => setCartOpen(!cartOpen)}
         />
-        {cartOpen && (
-          <CartDropdown />
-        )}
+        {cartOpen && <CartDropdown />}
       </div>
-      <Button onClick={() => console.log("Sign in Button")}>Sign in</Button>
+      <Button url="/login">
+        Sign in
+      </Button>
     </nav>
   );
 }

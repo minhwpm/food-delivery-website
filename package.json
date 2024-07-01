@@ -1,5 +1,5 @@
 {
-  "name": "food-delivery-website",
+  "name": "nextjs-foodie-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -16,6 +16,7 @@
     "@types/react-dom": "^18.0.11",
     "classnames": "^2.5.1",
     "next": "^14.2.4",
+    "next-auth": "^4.24.7",
     "node-sass": "^9.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",

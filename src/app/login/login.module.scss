@@ -1,0 +1,18 @@
+.login-form {
+  max-width: 500px;
+  padding: 30px 50px;
+  border: 1px solid #eee;
+  display: flex;
+  flex-direction: column;
+  row-gap: 10px;
+  margin: 30px auto 0;
+  input {
+    font-size: 1rem;
+    padding: 15px 25px;
+    border: 1px solid #eee;
+    border-radius: 30px;
+    &:focus {
+      border: 1px solid #aaa;
+    }
+  }
+}

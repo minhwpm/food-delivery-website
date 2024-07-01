@@ -4,8 +4,8 @@ import { StrictMode } from "react";
 import { Provider } from "react-redux";
 import store from '../store';
 import Header from "src/components/Header/Header"
+import { SessionProvider } from "next-auth/react"
 import "../index.css"
-
 
 export default function RootLayout({
   children,
@@ -21,10 +21,12 @@ export default function RootLayout({
       </head>
       <body>
         <StrictMode>
-          <Provider store={store}>
-            <Header />
-            {children}
-          </Provider>
+          <SessionProvider>
+            <Provider store={store}>
+              <Header />
+              {children}
+            </Provider>
+          </SessionProvider>
         </StrictMode>
       </body>
     </html>
