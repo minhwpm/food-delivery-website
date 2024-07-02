@@ -4,7 +4,7 @@
   border: 1px solid #eee;
   display: flex;
   flex-direction: column;
-  row-gap: 10px;
+  row-gap: 15px;
   margin: 30px auto 0;
   input {
     font-size: 1rem;
@@ -14,5 +14,8 @@
     &:focus {
       border: 1px solid #aaa;
     }
+  }
+  button {
+    margin-top: 20px;
   }
 }

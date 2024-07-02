@@ -1,6 +1,8 @@
 import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
+import { collection, getDocs, query, where } from "firebase/firestore";
+import { firestoreDb } from "@/app/firebaseConfig";
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -12,11 +14,21 @@ const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         const { email, password } = credentials as { email: string, password: string };
 
-        if (email === "user@example.com" && password === "password") {
-          return { id: "1", email: "user@example.com" };
-        } else {
-          return null;
+        const usersRef = collection(firestoreDb, "users")
+        const q = query(usersRef, where("email", "==", email));
+        const querySnapshot = await getDocs(q);
+
+        if (querySnapshot.empty) {
+          throw new Error("No user found with this email");
         }
+
+        const userDoc = querySnapshot.docs[0]
+        const user = userDoc.data();
+
+        if (password !== user.password) {
+          throw new Error("Invalid password")
+        }
+        return { id: user.id, email: user.email };
       },
     }),
   ],

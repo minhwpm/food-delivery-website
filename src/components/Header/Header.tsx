@@ -8,18 +8,17 @@ import Button from "../Button/Button";
 import CartDropdown from "../CartDropdown/CartDropdown";
 import styles from "./Header.module.scss"
 import Link from "next/link";
+import { signOut, useSession } from "next-auth/react";
 
 const Header = () => {
   const [cartOpen, setCartOpen] = useState(false)
+  const { data, status }  = useSession()
 
   return (
     <nav className={styles.header}>
       <Link href="/" className={styles["logo-text"]}>
         Foodie
       </Link>
-      {/* <div className={styles["logo-text"]}>
-        Foodie
-      </div> */}
       <SearchBox />
       <div className={styles["cart-container"]}>
         <FontAwesomeIcon
@@ -29,9 +28,15 @@ const Header = () => {
         />
         {cartOpen && <CartDropdown />}
       </div>
-      <Button url="/login">
-        Sign in
-      </Button>
+      {status === "authenticated" && (
+        <>
+          {data?.user.email}
+          <Button onClick={async () => await signOut()}>Sign out</Button>
+        </>
+      )}
+      {status === "unauthenticated" && (
+        <Button url="/login">Sign in</Button>
+      )}
     </nav>
   );
 }

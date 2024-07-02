@@ -2,8 +2,8 @@
 
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import styles from "./login.module.scss";
 import Button from "src/components/Button/Button";
+import styles from "./login.module.scss";
 
 export default function LoginPage() {
   const [errorMessage, setErrorMessage] = useState("")
@@ -13,7 +13,7 @@ export default function LoginPage() {
     const form = event.currentTarget
     const formData = new FormData(form);
     const credentials = Object.fromEntries(formData)
-    console.log("Credentials", credentials)
+    console.log("credentials", credentials)
 
     const result = await signIn("credentials", {
       redirect: false,
@@ -27,7 +27,6 @@ export default function LoginPage() {
     } else {
       window.location.href="/"
     }
-    return result
   }
 
   return (
