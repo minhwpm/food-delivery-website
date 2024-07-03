@@ -3,6 +3,7 @@ import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { collection, getDocs, query, where } from "firebase/firestore";
 import { firestoreDb } from "@/app/firebaseConfig";
+import bcrypt from "bcrypt";
 
 const authOptions: NextAuthOptions = {
   providers: [
@@ -25,7 +26,7 @@ const authOptions: NextAuthOptions = {
         const userDoc = querySnapshot.docs[0]
         const user = userDoc.data();
 
-        if (password !== user.password) {
+        if (!await bcrypt.compare(password, user.password)) {
           throw new Error("Invalid password")
         }
         return { id: user.id, email: user.email };
