@@ -1,0 +1,52 @@
+[
+  {
+    "id": "001",
+    "name": "Sushi",
+    "imageUrl": ""
+  },
+  {
+    "id": "002",
+    "name": "Soda",
+    "imageUrl": ""
+  },
+  {
+    "id": "003",
+    "name": "Pizza",
+    "imageUrl": ""
+  },
+  {
+    "id": "004",
+    "name": "Burger",
+    "imageUrl": ""
+  },
+  {
+    "id": "005",
+    "name": "Salad",
+    "imageUrl": ""
+  },
+  {
+    "id": "006",
+    "name": "Pasta",
+    "imageUrl": ""
+  },
+  {
+    "id": "007",
+    "name": "Steak",
+    "imageUrl": ""
+  },
+  {
+    "id": "008",
+    "name": "Noodle",
+    "imageUrl": ""
+  },
+  {
+    "id": "009",
+    "name": "Dessert",
+    "imageUrl": ""
+  },
+  {
+    "id": "010",
+    "name": "Soup",
+    "imageUrl": ""
+  }
+]
