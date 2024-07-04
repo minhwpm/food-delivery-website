@@ -1,5 +1,6 @@
 import { Dispatch, createSlice } from "@reduxjs/toolkit";
-import type { FoodItem } from "../components/FoodCard/FoodCard";
+import { fetchFoods } from "@/lib/firestore";
+import { FoodItem } from "@/types/types";
 
 const pageSize = 12;
 
@@ -44,7 +45,6 @@ const initialState: FoodState = {
 };
 
 function filterData(data: Array<FoodItem>, state: FoodState): [Array<FoodItem>, number] {
-  //Time complex O(n) with n=200 (number of items)
   const filtered = data
     .filter((item) => {
       return (
@@ -104,12 +104,8 @@ const foodSlice = createSlice({
 
 export const fetchFoodData = () => async (dispatch: Dispatch) => {
   try {
-    const res = await fetch(process.env.FOOD_API as string);
-    if (!res.ok) {
-      throw new Error(`HTTP error! Status: ${res.status}`);
-    }
-    const data = await res.json();
-    dispatch(initFoodData(data))
+    const foodItems = await fetchFoods()
+    dispatch(initFoodData(foodItems))
   } catch(e) {
     console.error(e)
     dispatch(updateNotification("Can't fetch food data. Please try again later."))

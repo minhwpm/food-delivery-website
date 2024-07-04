@@ -1,17 +1,14 @@
 "use client";
 
-import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import SearchBox from "../SearchBox/SearchBox";
 import Button from "../Button/Button";
 import CartDropdown from "../CartDropdown/CartDropdown";
-import styles from "./Header.module.scss"
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
+import styles from "./Header.module.scss"
 
 const Header = () => {
-  const [cartOpen, setCartOpen] = useState(false)
   const { data, status }  = useSession()
 
   return (
@@ -20,14 +17,7 @@ const Header = () => {
         Foodie
       </Link>
       <SearchBox />
-      <div className={styles["cart-container"]}>
-        <FontAwesomeIcon
-          className={styles["cart-icon"]}
-          icon={faCartShopping}
-          onClick={() => setCartOpen(!cartOpen)}
-        />
-        {cartOpen && <CartDropdown />}
-      </div>
+      <CartDropdown />
       {status === "authenticated" && (
         <>
           {data?.user.email}

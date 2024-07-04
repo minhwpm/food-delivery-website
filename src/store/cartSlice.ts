@@ -1,9 +1,7 @@
+import { CartItem } from '@/types/types';
 import { createSlice } from '@reduxjs/toolkit'
-import { FoodItem } from '../components/FoodCard/FoodCard';
 
-interface CartItem extends FoodItem {
-  quantity: number;
-}
+
 
 interface CartState {
   items: CartItem[]

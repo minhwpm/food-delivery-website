@@ -8,25 +8,12 @@ import { useAppDispatch } from "../../store/hooks";
 import { addToCart } from "../../store/cartSlice"
 import styles from "./FoodCard.module.scss"
 import classNames from "classnames";
+import { FoodItem } from "@/types/types";
 
 export enum PromotionType {
   plusOne = "1+1",
   gift = "gift",
   discount = "discount",
-}
-export interface FoodItem {
-  id: string
-  index: number
-  rating: number
-  promotion: PromotionType
-  isNew: boolean
-  categoryId: string
-  minCookTime: number 
-  maxCookTime: number
-  price: number
-  restaurant: string
-  name: string
-  imageUrl: string
 }
 
 export default function FoodCard({ item }: { item: FoodItem }) {

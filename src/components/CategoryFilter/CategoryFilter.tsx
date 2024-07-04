@@ -7,13 +7,9 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faFilter, faXmark } from "@fortawesome/free-solid-svg-icons";
 import styles from "./CategoryFilter.module.scss";
 import classNames from "classnames";
+import { FoodCategoryType } from "@/types/types";
 
-interface CategoryType {
-  id: string;
-  name: string;
-}
-
-const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
+const CategoryFilter: React.FC<{ categories: Array<FoodCategoryType> }> = ({
   categories,
 }) => {
   const { selectedCategory } = useAppSelector((s) => s.food);
@@ -57,7 +53,7 @@ const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
         >
           All
         </li>
-        {categories.map((item: CategoryType) => (
+        {categories.map((item: FoodCategoryType) => (
           <li
             onClick={() => {
               dispatch(changeCategory({ id: item.id, name: item.name }));
@@ -83,7 +79,7 @@ const CategoryFilter: React.FC<{ categories: Array<CategoryType> }> = ({
         >
           All
         </li>
-        {categories.map((item: CategoryType) => (
+        {categories.map((item: FoodCategoryType) => (
           <li
             onClick={() => {
               dispatch(changeCategory({ id: item.id, name: item.name }));

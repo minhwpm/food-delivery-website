@@ -1,99 +1,110 @@
-.cart-dropdown {
-  position: absolute;
-  top: 2.5rem;
-  right: -2.5rem;
-  background-color: white;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-  border: 1px solid #ddd;
-  z-index: 1000;
-  border-radius: 20px;
-  min-width: 400px;
-  .wrapper {
-    overflow: hidden;
-    color: black;
-    
-    .title {
-      font-weight: bold;
-      margin: 0;
-      padding: 10px 20px;
-      border-bottom: 1px #eee solid;
-    }
+.cart-container {
+  position: relative;
+  margin-right: 20px;
+  margin-left: auto;
 
-    .cart-empty {
-      padding: 20px;
-    }
-
-    .cart-item-list {
-      overflow-y: auto;
-      max-height: 50vh;
-      scrollbar-width: none;
+  .cart-icon {
+    color: var(--primary-color);
+    font-size: 25px;
+    cursor: pointer;
+  }
+  .cart-dropdown {
+    position: absolute;
+    top: 2.5rem;
+    right: -2.5rem;
+    background-color: white;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ddd;
+    z-index: 1000;
+    border-radius: 20px;
+    min-width: 400px;
+    .wrapper {
+      overflow: hidden;
+      color: black;
       
-      .cart-item {
-        display: flex;
-        gap: 15px;
+      .title {
+        font-weight: bold;
+        margin: 0;
         padding: 10px 20px;
         border-bottom: 1px #eee solid;
-      
-        &:last-child {
-          border-bottom: none;
-        }
+      }
+  
+      .cart-empty {
+        padding: 20px;
+      }
+  
+      .cart-item-list {
+        overflow-y: auto;
+        max-height: 50vh;
+        scrollbar-width: none;
         
-        .quantity {
-          width: 40px;
-          height: 40px;
-          border-radius: 100%;
-          background: #000;
-          color: #fff;
-          flex-shrink: 0;
-          align-self: center;
+        .cart-item {
           display: flex;
-          justify-content: center;
-          align-items: center;
-        }
-        .subtotal {
-          display: flex;
-          flex-direction: column;
-          margin-left: auto;
-        }
+          gap: 15px;
+          padding: 10px 20px;
+          border-bottom: 1px #eee solid;
         
-        .name {
-          margin: 0;
-          align-self: center;
-        }
-        .thumbnail-wrapper {
-          width: 30% ;
-          flex-shrink: 0;
-          .thumbnail {
-            width: 100%;
-            height: auto;
-            aspect-ratio: 1/1;
-            display: block;
-            border-radius: 15px;
-            object-fit: cover;
+          &:last-child {
+            border-bottom: none;
+          }
+          
+          .quantity {
+            width: 40px;
+            height: 40px;
+            border-radius: 100%;
+            background: #000;
+            color: #fff;
+            flex-shrink: 0;
+            align-self: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+          }
+          .subtotal {
+            display: flex;
+            flex-direction: column;
+            margin-left: auto;
+          }
+          
+          .name {
+            margin: 0;
+            align-self: center;
+          }
+          .thumbnail-wrapper {
+            width: 30% ;
+            flex-shrink: 0;
+            .thumbnail {
+              width: 100%;
+              height: auto;
+              aspect-ratio: 1/1;
+              display: block;
+              border-radius: 15px;
+              object-fit: cover;
+            }
+          }
+  
+          .remove-btn {
+            border: none;
+            padding: 10px 0;
+            background-color: transparent;
+            cursor: pointer;
           }
         }
-
-        .remove-btn {
-          border: none;
-          padding: 10px 0;
-          background-color: transparent;
-          cursor: pointer;
+      }
+  
+      .cart-total {
+        border-top: 1px #eee solid;
+        padding: 20px;
+        .amount {
+          text-align: end;
+          margin: 0;
         }
-      }
-    }
-
-    .cart-total {
-      border-top: 1px #eee solid;
-      padding: 20px;
-      .amount {
-        text-align: end;
-        margin: 0;
-      }
-      .button-group-container {
-        display: flex;
-        gap: 10px;
-        > * {
-          flex: 1;
+        .button-group-container {
+          display: flex;
+          gap: 10px;
+          > * {
+            flex: 1;
+          }
         }
       }
     }
