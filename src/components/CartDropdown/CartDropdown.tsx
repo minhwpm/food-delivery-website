@@ -1,6 +1,5 @@
 "use client";
 
-import { useCallback, useState } from "react";
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { removeFromCart } from "@/store/cartSlice"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -8,28 +7,25 @@ import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
 import ImageWithFallback from "@/components/ImageWithFallback/ImageWithFallback";
 import Button from '@/components/Button/Button';
 import styles from "./CardDropdown.module.scss"
+import { useToggleDropdown } from "@/lib/hooks";
 
 const CartDropdown = () => {
-  const [cartOpen, setCartOpen] = useState(false)
-  const {items} = useAppSelector(s => s.cart)
+  const { dropdownRef, dropdownOpen, toggleDropdown } = useToggleDropdown()
+  const { items } = useAppSelector((s) => s.cart);
   const dispatch = useAppDispatch()
 
-  const toggleCartOpen = useCallback(() => {
-    setCartOpen(prev => !prev)
-  }, [])
-
-  const handleRemoveFromCart = useCallback((id: string) => {
+  const handleRemoveFromCart = (id: string) => {
     dispatch(removeFromCart(id));
-  }, [dispatch]);
+  }
 
   return (
-    <div className={styles["cart-container"]}>
+    <div ref={dropdownRef} className={styles["cart-container"]}>
       <FontAwesomeIcon
         className={styles["cart-icon"]}
         icon={faCartShopping}
-        onClick={toggleCartOpen}
+        onClick={toggleDropdown}
       />
-      {cartOpen && (
+      {dropdownOpen && (
         <div className={styles["cart-dropdown"]}>
           <div className={styles.wrapper}>
             <h3 className={styles.title}>Cart</h3>
