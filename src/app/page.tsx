@@ -1,4 +1,4 @@
-import { FoodCategoryType } from "@/types/types";
+import { FoodCategoryType, FoodItem } from "@/types/types";
 import CategoryFilter from "../components/CategoryFilter/CategoryFilter";
 import FoodList from "../components/FoodList/FoodList";
 import { fetchFoodCategories, fetchFoods } from "@/lib/firestore";
@@ -12,7 +12,7 @@ export default async function Home() {
     <main>
       <div className="container">
         { !!categories.length && <CategoryFilter categories={categories as FoodCategoryType[]} />}
-        { !!foodItems.length && <FoodList foodItems={foodItems} />}
+        { !!foodItems.length && <FoodList foodItems={foodItems as FoodItem[]} />}
       </div>
     </main>
   );
