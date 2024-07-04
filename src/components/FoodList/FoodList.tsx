@@ -5,11 +5,11 @@ import { initFoodData, nextPage } from "../../store/foodSlice";
 import { useAppSelector, useAppDispatch } from "../../store/hooks";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus } from '@fortawesome/free-solid-svg-icons'
-import FoodCard, { FoodItem } from "../FoodCard/FoodCard";
-import Button from "../Button/Button";
-import SearchResultNotification from "../../components/SearchResultNotification/SearchResultNotification";
+import { FoodItem } from "@/types/types";
+import FoodCard from "@/components/FoodCard/FoodCard";
+import Button from "@/components/Button/Button";
+import SearchResultNotification from "@/components/SearchResultNotification/SearchResultNotification";
 import styles from "./FoodList.module.scss"
-
 
 const FoodList: React.FC<{
   foodItems: FoodItem[];

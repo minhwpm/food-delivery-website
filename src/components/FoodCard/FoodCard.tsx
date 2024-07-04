@@ -1,14 +1,14 @@
 "use client";
 
+import classNames from "classnames";
 import Badge from "../Badge/Badge"
+import ImageWithFallback from "../ImageWithFallback/ImageWithFallback"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faStar, faPlus } from '@fortawesome/free-solid-svg-icons'
-import ImageWithFallback from "../ImageWithFallback/ImageWithFallback"
 import { useAppDispatch } from "../../store/hooks";
 import { addToCart } from "../../store/cartSlice"
-import styles from "./FoodCard.module.scss"
-import classNames from "classnames";
 import { FoodItem } from "@/types/types";
+import styles from "./FoodCard.module.scss"
 
 export enum PromotionType {
   plusOne = "1+1",
