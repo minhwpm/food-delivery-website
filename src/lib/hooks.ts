@@ -1,4 +1,6 @@
-import { useEffect, useRef, useState } from "react"
+import { removeFromCart } from "@/store/cartSlice"
+import { useAppDispatch, useAppSelector } from "@/store/hooks"
+import { useCallback, useEffect, useRef, useState } from "react"
 
 export const useToggleDropdown = () => {
   const dropdownRef = useRef<HTMLDivElement>(null)
@@ -24,4 +26,17 @@ export const useToggleDropdown = () => {
   }, [dropdownOpen])
 
   return { dropdownRef, dropdownOpen, toggleDropdown }
-} 
+}
+
+export const useCart = () => {
+  const { items } = useAppSelector((s) => s.cart);
+  const dispatch = useAppDispatch()
+
+  const handleRemoveFromCart = useCallback((id: string) => {
+    dispatch(removeFromCart(id));
+  }, [dispatch])
+  return {
+    items,
+    handleRemoveFromCart,
+  };
+};

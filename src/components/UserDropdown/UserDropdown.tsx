@@ -22,7 +22,7 @@ const UserDropdown: React.FC<{user}> = ({user}) => {
         <div className={styles["user-dropdown"]}>
           <div className={styles.wrapper}>
             {user.name && <div>{user.name}</div> }
-            <Link href={"/account"}>My Account</Link>
+            <Link href="/account">My Account</Link>
             <Link href={"/checkout"}>My Order</Link>
             <Link href={"/wishlist"}>Wish list</Link>
             <Button onClick={async () => await signOut()}>Sign out</Button>

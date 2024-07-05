@@ -1,0 +1,38 @@
+.grid-container {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 1fr;
+    /* Stacks the columns vertically on small screens */
+  }
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+
+  input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 15px 25px;
+    border: 1px solid #eee;
+    border-radius: 30px;
+    &:focus {
+      border: 1px solid #aaa;
+    }
+  }
+}
+
+.order-summary {
+  border-left: 1px solid #eee;
+  padding-left: 40px;
+  display: flex;
+  flex-direction: column;
+  .cart-total {
+    text-align: end;
+  }
+}
