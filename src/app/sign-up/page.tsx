@@ -1,12 +1,14 @@
 "use client";
 
+import Button from "src/components/Button/Button";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import Button from "src/components/Button/Button";
+import { useRouter } from "next/navigation";
 import styles from "../login/login.module.scss";
 
-export default function LoginPage() {
+export default function SignUpPage() {
   const [message, setMessage] = useState("");
+  const router = useRouter();
 
   async function handleSignUp(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -19,19 +21,23 @@ export default function LoginPage() {
       method: "POST",
       body: JSON.stringify(credentials)
     });
-    console.log("RES", res);
-
     if (!res.ok) {
       setMessage("Some thing went wrong");
       return
     }
     const data = await res.json()
     setMessage(data.message)
-    signIn("credentials", {
+    const result = await signIn("credentials", {
       redirect: false,
       email: credentials.email,
       password: credentials.password
     })
+
+    if (result?.error) {
+      setMessage(result.error);
+    } else {
+      router.push("/")
+    }
   }
 
   return (

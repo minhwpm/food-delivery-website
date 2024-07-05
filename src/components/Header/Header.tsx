@@ -5,7 +5,7 @@ import Button from "../Button/Button";
 import CartDropdown from "../CartDropdown/CartDropdown";
 import Link from "next/link";
 import UserDropdown from "../UserDropdown/UserDropdown";
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import styles from "./Header.module.scss"
 
 const Header = () => {

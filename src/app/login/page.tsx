@@ -1,13 +1,15 @@
 "use client";
 
-import { signIn } from "next-auth/react";
-import { useState } from "react";
-import Button from "src/components/Button/Button";
-import styles from "./login.module.scss";
 import Link from "next/link";
+import Button from "src/components/Button/Button";
+import { useState } from "react";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import styles from "./login.module.scss";
 
 export default function LoginPage() {
   const [errorMessage, setErrorMessage] = useState("");
+  const router = useRouter();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -21,12 +23,11 @@ export default function LoginPage() {
       email: credentials.email,
       password: credentials.password,
     });
-    console.log("RESULT", result);
 
     if (result?.error) {
       setErrorMessage(result.error);
     } else {
-      window.location.href = "/";
+      router.push("/")
     }
   }
 
