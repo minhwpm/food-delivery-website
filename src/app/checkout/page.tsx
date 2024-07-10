@@ -3,11 +3,11 @@
 import classNames from "classnames"
 import styles from "./checkout.module.scss"
 import { useCart } from "@/lib/hooks"
-import CartItem from "@/components/CartItem/CartItem"
 import Button from "@/components/Button/Button"
+import CartItemA from "@/components/CartItemA/CartItemA"
 
 export default function CheckoutPage() {
-  const { items, handleRemoveFromCart } = useCart()
+  const { items, handleRemoveFromCart, handleIncrementItemQuantity, handleDecrementItemQuantity } = useCart()
 
   return (
     <main>
@@ -32,7 +32,11 @@ export default function CheckoutPage() {
               </div>
             </div>
             <div className={styles.field}>
-              <input type="text" name="address" placeholder="Your full address" />
+              <input
+                type="text"
+                name="address"
+                placeholder="Your full address"
+              />
             </div>
             <div className={styles.field}>
               <input type="text" name="city" placeholder="City" />
@@ -40,11 +44,20 @@ export default function CheckoutPage() {
           </form>
         </div>
         <div className={styles["order-summary"]}>
+          {items.length === 0 && (
+            <div className={styles["cart-empty"]}>Your cart is empty</div>
+          )}
           {items.length > 0 && (
             <>
               <h2>Order Summary</h2>
               {items.map((item) => (
-                <CartItem key={item.id} item={item} handleRemoveFromCart={handleRemoveFromCart} />
+                <CartItemA
+                  key={item.id}
+                  item={item}
+                  handleRemoveFromCart={handleRemoveFromCart}
+                  handleIncrementItemQuantity={handleIncrementItemQuantity}
+                  handleDecrementItemQuantity={handleDecrementItemQuantity}
+                />
               ))}
               <div className={styles["cart-total"]}>
                 <h3 className={styles["amount"]}>
@@ -56,15 +69,12 @@ export default function CheckoutPage() {
                     )
                     .toFixed(2)}
                 </h3>
-                
               </div>
-              <Button url="/cart">
-                Confirm Order
-              </Button>
+              <Button url="/cart">Confirm Order</Button>
             </>
           )}
         </div>
       </div>
     </main>
-  )
+  );
 }

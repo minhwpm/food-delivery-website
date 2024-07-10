@@ -1,4 +1,4 @@
-import { removeFromCart } from "@/store/cartSlice"
+import { addToCart, decrementItemQuantity, incrementItemQuantity, removeFromCart } from "@/store/cartSlice"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
 import { useCallback, useEffect, useRef, useState } from "react"
 
@@ -35,8 +35,19 @@ export const useCart = () => {
   const handleRemoveFromCart = useCallback((id: string) => {
     dispatch(removeFromCart(id));
   }, [dispatch])
+
+  const handleIncrementItemQuantity = useCallback((id: string) => {
+    dispatch(incrementItemQuantity(id))
+  }, [dispatch])
+
+  const handleDecrementItemQuantity = useCallback((id: string) => {
+    dispatch(decrementItemQuantity(id))
+  }, [dispatch])
+
   return {
     items,
     handleRemoveFromCart,
+    handleIncrementItemQuantity,
+    handleDecrementItemQuantity,
   };
 };
