@@ -8,7 +8,7 @@ import { useToggleDropdown } from "@/lib/hooks";
 import Button from '@/components/Button/Button';
 import styles from "./CardDropdown.module.scss"
 import { useCallback } from "react";
-import CartItem from "../CartItem/CartItem";
+import CartItemB from "../CartItemB/CartItemB";
 
 const CartDropdown = () => {
   const { dropdownRef, dropdownOpen, toggleDropdown } = useToggleDropdown()
@@ -36,7 +36,7 @@ const CartDropdown = () => {
               <>
                 <div className={styles["cart-item-list"]}>
                   {items.map((item) => (
-                    <CartItem key={item.id} item={item} handleRemoveFromCart={handleRemoveFromCart} />
+                    <CartItemB key={item.id} item={item} handleRemoveFromCart={handleRemoveFromCart} />
                   ))}
                 </div>
                 <div className={styles["cart-total"]}>

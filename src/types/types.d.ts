@@ -1,4 +1,4 @@
-export interface FoodItem {
+export interface FoodItemType {
   id: string
   index: number
   rating: number
@@ -13,7 +13,7 @@ export interface FoodItem {
   imageUrl: string
 }
 
-export interface CartItem extends FoodItem {
+export interface CartItemType extends FoodItemType {
   quantity: number;
 }
 

@@ -3,11 +3,11 @@
 import classNames from "classnames";
 import Badge from "../Badge/Badge"
 import ImageWithFallback from "../ImageWithFallback/ImageWithFallback"
+import AddToCartButton from "../AddToCartButton/AddToCartButton";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar, faPlus } from '@fortawesome/free-solid-svg-icons'
-import { useAppDispatch } from "../../store/hooks";
-import { addToCart } from "../../store/cartSlice"
-import { FoodItem } from "@/types/types";
+import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { FoodItemType } from "@/types/types";
+import { useCart } from "@/lib/hooks";
 import styles from "./FoodCard.module.scss"
 
 export enum PromotionType {
@@ -16,7 +16,7 @@ export enum PromotionType {
   discount = "discount",
 }
 
-export default function FoodCard({ item }: { item: FoodItem }) {
+const FoodCard: React.FC<{ item: FoodItemType }> = ({item}) => {
   const {
     price,
     rating,
@@ -27,7 +27,7 @@ export default function FoodCard({ item }: { item: FoodItem }) {
     name,
     imageUrl,
   } = item;
-  const dispatch = useAppDispatch();
+  const { handleAddToCart } = useCart()
 
   return (
     <div className={styles["food-card"]}>
@@ -54,15 +54,12 @@ export default function FoodCard({ item }: { item: FoodItem }) {
           )}
         </div>
         <div className={styles.price}>${price.toFixed(2)}</div>
-        <div className={styles["add-to-cart-btn-wrapper"]}>
-          <button
-            className={styles["add-to-cart-btn"]}
-            onClick={() => dispatch(addToCart(item))}
-          >
-            <FontAwesomeIcon icon={faPlus} color="" />
-          </button>
+        <div className={styles["btn-wrapper"]}>
+          <AddToCartButton item={item} handleAddToCart={handleAddToCart} />
         </div>
       </div>
     </div>
   );
 }
+
+export default FoodCard

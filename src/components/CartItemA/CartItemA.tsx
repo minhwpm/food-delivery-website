@@ -2,8 +2,14 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
 import ImageWithFallback from "../ImageWithFallback/ImageWithFallback";
 import styles from "./CartItemA.module.scss";
+import { FoodItemType } from '@/types/types';
 
-const CartItemA = ({
+const CartItemA: React.FC<{
+  item: FoodItemType
+  handleRemoveFromCart: (id: string) => void
+  handleIncrementItemQuantity: (id: string) => void
+  handleDecrementItemQuantity: (id: string) => void
+}> = ({
   item,
   handleRemoveFromCart,
   handleIncrementItemQuantity,

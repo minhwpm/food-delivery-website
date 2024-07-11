@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
 import FoodCard, { PromotionType } from './FoodCard';
-import { FoodItem } from '@/types/types';
+import { FoodItemType } from '@/types/types';
 
-const mockData: FoodItem = {
+const mockData: FoodItemType = {
   id: "001",
   index: 0,
   rating: 4,

@@ -15,7 +15,7 @@ export default function CheckoutPage() {
         <div className={styles["grid-column"]}>
           <h2>Checkout</h2>
           <form className={styles["checkout-form"]}>
-            <div className={styles["grid-container"]}>
+            <div className={styles["field-group"]}>
               <div className={styles.field}>
                 <input type="text" name="first-name" placeholder="First name" />
               </div>
@@ -23,7 +23,7 @@ export default function CheckoutPage() {
                 <input type="text" name="last-name" placeholder="Last name" />
               </div>
             </div>
-            <div className={styles["grid-container"]}>
+            <div className={styles["field-group"]}>
               <div className={styles.field}>
                 <input type="phone" name="phone" placeholder="Phone" />
               </div>

@@ -1,0 +1,33 @@
+.cart-item {
+  display: grid;
+  grid-template-columns: 2fr 3fr 2fr;
+  gap: 15px;
+  align-items: center;
+
+  .thumbnail-wrapper {
+    .thumbnail {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 1/1;
+      display: block;
+      border-radius: 15px;
+      object-fit: cover;
+    }
+  }
+  
+  .name {
+    margin: 0;
+    font-weight: 600;
+  }
+
+  .quantity {
+    color: #555;
+    font-size: 0.8rem;
+    margin-top: 10px;
+  }
+
+  .subtotal {
+    margin-left: auto;
+  }
+
+}

@@ -1,6 +1,6 @@
 import { Dispatch, createSlice } from "@reduxjs/toolkit";
 import { fetchFoods } from "@/lib/firestore";
-import { FoodItem } from "@/types/types";
+import { FoodItemType } from "@/types/types";
 
 const pageSize = 12;
 
@@ -18,8 +18,8 @@ interface FoodState {
     name: string;
   };
   foodList: {
-    all: Array<FoodItem>;
-    showed: Array<FoodItem>;
+    all: Array<FoodItemType>;
+    showed: Array<FoodItemType>;
   };
   notification: string
 }
@@ -44,7 +44,7 @@ const initialState: FoodState = {
   notification: ""
 };
 
-function filterData(data: Array<FoodItem>, state: FoodState): [Array<FoodItem>, number] {
+function filterData(data: Array<FoodItemType>, state: FoodState): [Array<FoodItemType>, number] {
   const filtered = data
     .filter((item) => {
       return (

@@ -1,5 +1,6 @@
 import { addToCart, decrementItemQuantity, incrementItemQuantity, removeFromCart } from "@/store/cartSlice"
 import { useAppDispatch, useAppSelector } from "@/store/hooks"
+import { FoodItemType } from "@/types/types"
 import { useCallback, useEffect, useRef, useState } from "react"
 
 export const useToggleDropdown = () => {
@@ -32,6 +33,10 @@ export const useCart = () => {
   const { items } = useAppSelector((s) => s.cart);
   const dispatch = useAppDispatch()
 
+  const handleAddToCart = useCallback((item: FoodItemType) => {
+    dispatch(addToCart(item));
+  }, [dispatch])
+
   const handleRemoveFromCart = useCallback((id: string) => {
     dispatch(removeFromCart(id));
   }, [dispatch])
@@ -46,6 +51,7 @@ export const useCart = () => {
 
   return {
     items,
+    handleAddToCart,
     handleRemoveFromCart,
     handleIncrementItemQuantity,
     handleDecrementItemQuantity,

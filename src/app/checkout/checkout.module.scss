@@ -1,10 +1,10 @@
 .grid-container {
   width: 100%;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 7fr 5fr;
   gap: 20px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 1024px) {
     grid-template-columns: 1fr;
     /* Stacks the columns vertically on small screens */
   }
@@ -14,6 +14,18 @@
   display: flex;
   flex-direction: column;
   row-gap: 20px;
+
+  .field-group {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+    .field {
+      flex: 1;
+    }
+  }
 
   input {
     width: 100%;
