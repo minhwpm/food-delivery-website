@@ -14,7 +14,7 @@ const Header = () => {
   return (
     <nav className={styles.header}>
       <Link href="/" className={styles["logo-text"]}>
-        Foodie
+        Foody
       </Link>
       <SearchBox />
       <CartDropdown />
