@@ -17,11 +17,9 @@ export default function CheckoutPage() {
           <form className={styles["checkout-form"]}>
             <div className={styles["field-group"]}>
               <div className={styles.field}>
-                <input type="text" name="first-name" placeholder="First name" />
+                <input type="text" name="full-name" placeholder="Full name" />
               </div>
-              <div className={styles.field}>
-                <input type="text" name="last-name" placeholder="Last name" />
-              </div>
+              
             </div>
             <div className={styles["field-group"]}>
               <div className={styles.field}>
@@ -70,7 +68,7 @@ export default function CheckoutPage() {
                     .toFixed(2)}
                 </h3>
               </div>
-              <Button url="/cart">Confirm Order</Button>
+              <Button url="/cart" variant="black">Confirm Order</Button>
             </>
           )}
         </div>

@@ -16,7 +16,7 @@ const AddToCartButton: React.FC<{
   const [open, setOpen] = useState(false);
 
   return (
-    <Toast.Provider swipeDirection="right">
+    <Toast.Provider duration={3000} swipeDirection="right">
       <button
         className={styles["add-to-cart-btn"]}
         onClick={() => {

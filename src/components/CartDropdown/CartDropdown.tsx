@@ -14,10 +14,11 @@ const CartDropdown = () => {
   const { dropdownRef, dropdownOpen, toggleDropdown } = useToggleDropdown()
   const { items } = useAppSelector((s) => s.cart);
   const dispatch = useAppDispatch()
-
   const handleRemoveFromCart = useCallback((id: string) => {
     dispatch(removeFromCart(id));
   }, [dispatch])
+
+  const quantity = items.reduce((acc, item) => acc + item.quantity, 0)
 
   return (
     <div ref={dropdownRef} className={styles["cart-container"]}>
@@ -26,6 +27,7 @@ const CartDropdown = () => {
         icon={faCartShopping}
         onClick={toggleDropdown}
       />
+      {quantity > 0 && <div className={styles.quantity}>{quantity}</div>}
       {dropdownOpen && (
         <div className={styles["cart-dropdown"]}>
           <div className={styles.wrapper}>
@@ -36,25 +38,32 @@ const CartDropdown = () => {
               <>
                 <div className={styles["cart-item-list"]}>
                   {items.map((item) => (
-                    <CartItemB key={item.id} item={item} handleRemoveFromCart={handleRemoveFromCart} />
+                    <CartItemB
+                      key={item.id}
+                      item={item}
+                      handleRemoveFromCart={handleRemoveFromCart}
+                    />
                   ))}
                 </div>
                 <div className={styles["cart-total"]}>
-                  <h3 className={styles["amount"]}>
-                    Total: $
-                    {items
-                      .reduce(
-                        (total, item) => total + item.price * item.quantity,
-                        0
-                      )
-                      .toFixed(2)}
-                  </h3>
-                  <p>Shipping and taxes calculated at checkout.</p>
+                  <div className={styles["amount"]}>
+                    <span>Subtotal</span>
+                    <span>
+                      $
+                      {items
+                        .reduce(
+                          (total, item) => total + item.price * item.quantity,
+                          0
+                        )
+                        .toFixed(2)}
+                    </span>
+                  </div>
+                  <p className={styles.note}>
+                    Shipping and taxes calculated at checkout.
+                  </p>
                   <div className={styles["button-group-container"]}>
-                    <Button url="/cart">
-                      View Cart
-                    </Button>
-                    <Button url="/checkout">
+                    <Button url="/cart">View Cart</Button>
+                    <Button url="/checkout" variant="black">
                       Checkout
                     </Button>
                   </div>

@@ -12,18 +12,13 @@
     width: 40px;
     height: 40px;
     border-radius: 100%;
-    background: #000;
-    color: #fff;
+    background: #eee;
+    // color: #fff;
     flex-shrink: 0;
     align-self: center;
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-  .subtotal {
-    display: flex;
-    flex-direction: column;
-    margin-left: auto;
   }
   
   .name {
@@ -43,6 +38,11 @@
     }
   }
 
+  .subtotal {
+    display: flex;
+    flex-direction: column;
+    margin-left: auto;
+  }
   .remove-btn {
     border: none;
     padding: 10px 0;

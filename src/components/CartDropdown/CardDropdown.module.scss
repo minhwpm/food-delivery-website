@@ -8,6 +8,18 @@
     font-size: 25px;
     cursor: pointer;
   }
+  .quantity {
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    padding: 2px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 100%;
+    min-width: 20px;
+    font-size: 0.7rem;
+    text-align: center;
+    border: 1px solid var(--primary-color);
+  }
   .cart-dropdown {
     position: absolute;
     top: 2.5rem;
@@ -43,12 +55,20 @@
         border-top: 1px #eee solid;
         padding: 20px;
         .amount {
-          text-align: end;
+          display: flex;
+          justify-content: space-between;
           margin: 0;
+          font-weight: bold;
+        }
+        .note {
+          color: #64748b;
+          margin: 5px auto 0;
+          font-size: 0.9rem;
         }
         .button-group-container {
+          margin-top: 20px;
           display: flex;
-          gap: 10px;
+          gap: 20px;
           > * {
             flex: 1;
           }
