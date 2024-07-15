@@ -2,8 +2,7 @@
 
 import { useAppSelector, useAppDispatch } from "@/store/hooks";
 import { removeFromCart } from "@/store/cartSlice"
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartShopping } from "@fortawesome/free-solid-svg-icons";
+import { FaBasketShopping } from "react-icons/fa6";
 import { useToggleDropdown } from "@/lib/hooks";
 import Button from '@/components/Button/Button';
 import styles from "./CardDropdown.module.scss"
@@ -22,9 +21,8 @@ const CartDropdown = () => {
 
   return (
     <div ref={dropdownRef} className={styles["cart-container"]}>
-      <FontAwesomeIcon
+      <FaBasketShopping
         className={styles["cart-icon"]}
-        icon={faCartShopping}
         onClick={toggleDropdown}
       />
       {quantity > 0 && <div className={styles.quantity}>{quantity}</div>}

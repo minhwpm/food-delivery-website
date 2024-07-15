@@ -2,8 +2,7 @@
 
 import Link from "next/link";
 import Button from '@/components/Button/Button';
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser } from "@fortawesome/free-solid-svg-icons";
+import { FaUserAlt } from "react-icons/fa";
 import { signOut } from "next-auth/react";
 import { useToggleDropdown } from "@/lib/hooks";
 import styles from "./UserDropdown.module.scss"
@@ -13,15 +12,14 @@ const UserDropdown: React.FC<{user}> = ({user}) => {
 
   return (
     <div ref={dropdownRef} className={styles["user-container"]} >
-      <FontAwesomeIcon
+      <FaUserAlt
         className={styles["user-icon"]}
-        icon={faUser}
         onClick={toggleDropdown}
       />
       {dropdownOpen && (
         <div className={styles["user-dropdown"]}>
           <div className={styles.wrapper}>
-            {user.name && <div>{user.name}</div> }
+            {user.name && <div>Hello, {user.name}!</div> }
             <Link href="/account">My Account</Link>
             <Link href={"/checkout"}>My Order</Link>
             <Link href={"/wishlist"}>Wish list</Link>

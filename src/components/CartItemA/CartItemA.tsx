@@ -1,8 +1,7 @@
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPlus, faMinus } from '@fortawesome/free-solid-svg-icons'
+import { FaPlus, FaMinus } from "react-icons/fa";
+import { CartItemType } from '@/types/types';
 import ImageWithFallback from "../ImageWithFallback/ImageWithFallback";
 import styles from "./CartItemA.module.scss";
-import { CartItemType } from '@/types/types';
 
 const CartItemA: React.FC<{
   item: CartItemType
@@ -28,11 +27,11 @@ const CartItemA: React.FC<{
         <h4 className={styles.name}>{item.name}</h4>
         <div className={styles.counter}>
           <button onClick={() => handleDecrementItemQuantity(item.id)}>
-            <FontAwesomeIcon icon={faMinus} />
+            <FaMinus />
           </button>
           <span>{item.quantity}</span>
           <button onClick={() => handleIncrementItemQuantity(item.id)}>
-            <FontAwesomeIcon icon={faPlus} />
+            <FaPlus />
           </button>
         </div>
       </div>

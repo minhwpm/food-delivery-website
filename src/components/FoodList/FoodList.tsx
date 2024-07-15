@@ -8,6 +8,7 @@ import FoodCard from "@/components/FoodCard/FoodCard";
 import Button from "@/components/Button/Button";
 import SearchResultNotification from "@/components/SearchResultNotification/SearchResultNotification";
 import styles from "./FoodList.module.scss"
+import classNames from "classnames";
 
 const FoodList: React.FC<{
   foodItems: FoodItemType[];
@@ -20,7 +21,7 @@ const FoodList: React.FC<{
   }, [dispatch, foodItems])
 
   return (
-    <div className={styles["food-list"]}>
+    <div className={classNames("container", styles["food-list"])}>
       <SearchResultNotification />
       {notification && <span>{notification}</span>}
       <div className={styles.grid}>

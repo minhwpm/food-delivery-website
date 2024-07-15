@@ -1,0 +1,28 @@
+.account-form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+
+  .field-group {
+    display: flex;
+    gap: 20px;
+    flex-direction: column;
+    @media (min-width: 768px) {
+      flex-direction: row;
+    }
+    .field {
+      flex: 1;
+    }
+  }
+
+  input {
+    width: 100%;
+    font-size: 1rem;
+    padding: 15px 25px;
+    border: 1px solid #eee;
+    border-radius: 30px;
+    &:focus {
+      border: 1px solid #aaa;
+    }
+  }
+}

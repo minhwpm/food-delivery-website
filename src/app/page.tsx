@@ -10,7 +10,7 @@ export default async function Home() {
   const categories = await fetchFoodCategories()
   return (
     <main>
-      <div className="container">
+      <div className="">
         { !!categories.length && <CategoryFilter categories={categories as FoodCategoryType[]} />}
         { !!foodItems.length && <FoodList foodItems={foodItems as FoodItemType[]} />}
       </div>

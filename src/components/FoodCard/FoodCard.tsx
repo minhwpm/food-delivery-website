@@ -4,8 +4,7 @@ import classNames from "classnames";
 import Badge from "../Badge/Badge"
 import ImageWithFallback from "../ImageWithFallback/ImageWithFallback"
 import AddToCartButton from "../AddToCartButton/AddToCartButton";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faStar } from '@fortawesome/free-solid-svg-icons'
+import { FaStar } from "react-icons/fa6";
 import { FoodItemType } from "@/types/types";
 import { useCart } from "@/lib/hooks";
 import styles from "./FoodCard.module.scss"
@@ -43,7 +42,7 @@ const FoodCard: React.FC<{ item: FoodItemType }> = ({item}) => {
         <h3 className={styles.title}>{name}</h3>
         <div className={styles["tag-box"]}>
           <div className={styles.tag}>
-            <FontAwesomeIcon icon={faStar} color="#6A6466" />
+            <FaStar color="#6A6466" />
             {rating.toFixed(1)}
           </div>
           <div className={styles.tag}>

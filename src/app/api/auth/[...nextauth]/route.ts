@@ -29,7 +29,14 @@ const authOptions: NextAuthOptions = {
         if (!await bcrypt.compare(password, user.password)) {
           throw new Error("Invalid password")
         }
-        return { id: user.id, email: user.email };
+        return {
+          id: user.id,
+          name: user.name,
+          email: user.email,
+          phone: user.phone,
+          address: user.address,
+          birthday: user.birthday,
+        };
       },
     }),
   ],
@@ -37,11 +44,17 @@ const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
+        token.phone = user.phone;
+        token.address = user.address;
+        token.birthday = user.birthday;
       }
       return token;
     },
     async session({ session, token }) {
       session.user.id = token.id as string;
+      session.user.phone= token.phone as string;
+      session.user.address = token.address as string;
+      session.user.birthday = token.birthday as string;
       return session;
     },
   },

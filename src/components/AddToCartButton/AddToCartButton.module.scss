@@ -103,4 +103,7 @@
 
 .ToastAction {
   grid-area: action;
+  justify-self: self-end;
+  color: var(--green-color);
+  font-weight: 500;
 }

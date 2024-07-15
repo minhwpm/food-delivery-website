@@ -3,8 +3,7 @@
 import { useEffect, useState } from "react";
 import { useAppDispatch } from "../../store/hooks";
 import { searchByName } from "../../store/foodSlice";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { CiSearch } from "react-icons/ci";
 import styles from "./SearchBox.module.scss"
 
 const SearchBox = () => {
@@ -26,7 +25,7 @@ const SearchBox = () => {
   return (
     <form>
       <span className={styles["search-icon"]}>
-        <FontAwesomeIcon icon={faMagnifyingGlass} color="#8C949B" />
+        <CiSearch color="#8C949B" />
       </span>
       <input
         className={styles["search-field"]}

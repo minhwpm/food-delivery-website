@@ -1,8 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FaPlus } from "react-icons/fa6";
 import { FoodItemType } from "@/types/types";
 import * as Toast from '@radix-ui/react-toast';
 import Link from "next/link";
@@ -24,7 +23,7 @@ const AddToCartButton: React.FC<{
           setOpen(true);
         }}
       >
-        <FontAwesomeIcon icon={faPlus} />
+        <FaPlus />
       </button>
       <Toast.Root
         className={styles.ToastRoot}

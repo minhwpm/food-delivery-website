@@ -5,7 +5,14 @@ import { Provider } from "react-redux";
 import store from '../store';
 import Header from "src/components/Header/Header"
 import { SessionProvider } from "next-auth/react"
-import "../index.css"
+import { Poppins } from "next/font/google";
+import "../index.scss"
+
+const fontClass = Poppins({
+  subsets: ["latin"],
+  display: "swap",
+  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+});
 
 export default function RootLayout({
   children,
@@ -13,13 +20,13 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="App">
+    <html lang="en">
       <head>
         <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
         <title>Foodie</title>
         <meta name="description" content="Foodie - Food Delivery Web App" />
       </head>
-      <body>
+      <body className={fontClass.className}>
         <StrictMode>
           <SessionProvider>
             <Provider store={store}>

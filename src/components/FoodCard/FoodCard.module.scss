@@ -21,11 +21,11 @@
       margin: 0;
       font-size: 1rem;
       line-height: 1.5em;
-      font-weight: normal;
+      font-weight: 500;
     }
 
     .price {
-      font-weight: bold;
+      font-weight: 600;
       font-size: 1rem;
       padding-bottom: 4px;
       margin-top: auto;
@@ -43,7 +43,7 @@
 
         &.new {
           color: var(--green-color);
-          font-weight: bold;
+          font-weight: 600;
         }
 
         svg {

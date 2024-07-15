@@ -29,32 +29,40 @@
 
 .category-list {
   display: none;
-  gap: 10px;
-
+  background-color: var(--primary-color);
+  
   @media only screen and (min-width: 768px) {
+    display: block;
+  }
+  ul {
     display: flex;
-    flex-wrap: wrap;
-    padding-inline-start: 0;
+    gap: 20px;
+    overflow-x: auto;
+    // padding-inline-start: 0;
   }
 
   li {
     list-style-type: none;
-    padding: 15px;
+    padding: 10px 25px;
     cursor: pointer;
-    transition: background 0.3s linear;
-    min-width: 100px;
+    flex-basis: 80px;
+    flex-shrink: 0;
     border-radius: 30px;
     text-align: center;
-    background-color: #ddd;
+    // color: #fff;
+    // background-color: #eee;
+    font-weight: 500;
+    transition: background-color ease 0.3s, color ease 0.3s;
     /* border: 2px solid var(--primary-color); */
 
     &:hover {
-      background: rgba(255,199, 0, 0.5);
-      transition: background 0.3s linear;
+      background-color: rgba(var(--black-color-rgb), 0.5);
+      color: #fff;
     }
 
     &.active {
-      background-color: var(--primary-color);
+      background-color: var(--black-color);
+      color: #fff;
     }
 
     &:not(:first-child) {

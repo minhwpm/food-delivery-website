@@ -1,13 +1,13 @@
 "use client";
 
-import React, { useState } from "react";
-import { useAppSelector, useAppDispatch } from "../../store/hooks";
-import { changeCategory } from "../../store/foodSlice";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFilter, faXmark } from "@fortawesome/free-solid-svg-icons";
-import styles from "./CategoryFilter.module.scss";
-import classNames from "classnames";
+import { useState } from "react";
+import { useAppSelector, useAppDispatch } from "@/store/hooks";
+import { changeCategory } from "@/store/foodSlice";
+import { FaFilter } from "react-icons/fa";
+import { IoClose } from "react-icons/io5";
 import { FoodCategoryType } from "@/types/types";
+import classNames from "classnames";
+import styles from "./CategoryFilter.module.scss";
 
 const CategoryFilter: React.FC<{ categories: Array<FoodCategoryType> }> = ({
   categories,
@@ -19,11 +19,11 @@ const CategoryFilter: React.FC<{ categories: Array<FoodCategoryType> }> = ({
   return (
     <div>
       <div
-        className={styles["category-switcher"]}
+        className={classNames(styles["category-switcher"])}
         onClick={() => setShowed(true)}
       >
         <div className={styles["left"]}>
-          <FontAwesomeIcon icon={faFilter} color="#6A6466" />
+          <FaFilter color="#6A6466" />
         </div>
         <div className={styles["right"]}>{selectedCategory.name}</div>
       </div>
@@ -34,7 +34,7 @@ const CategoryFilter: React.FC<{ categories: Array<FoodCategoryType> }> = ({
         )}
         onClick={() => setShowed(false)}
       >
-        <FontAwesomeIcon icon={faXmark} />
+        <IoClose />
       </span>
       <ul
         className={classNames(
@@ -67,32 +67,34 @@ const CategoryFilter: React.FC<{ categories: Array<FoodCategoryType> }> = ({
           </li>
         ))}
       </ul>
-      <ul className={styles["category-list"]}>
-        <li
-          onClick={() => {
-            dispatch(changeCategory({ id: "all", name: "All" }));
-          }}
-          key="all"
-          className={classNames(
-            { [styles.active]: selectedCategory.id === "all" }
-          )}
-        >
-          All
-        </li>
-        {categories.map((item: FoodCategoryType) => (
+      <div className={styles["category-list"]}>
+        <ul className={classNames("container")}>
           <li
             onClick={() => {
-              dispatch(changeCategory({ id: item.id, name: item.name }));
+              dispatch(changeCategory({ id: "all", name: "All" }));
             }}
-            key={item.id}
+            key="all"
             className={classNames(
-              { [styles.active]: selectedCategory.id === item.id }
+              { [styles.active]: selectedCategory.id === "all" }
             )}
           >
-            {item.name}
+            All
           </li>
-        ))}
-      </ul>
+          {categories.map((item: FoodCategoryType) => (
+            <li
+              onClick={() => {
+                dispatch(changeCategory({ id: item.id, name: item.name }));
+              }}
+              key={item.id}
+              className={classNames(
+                { [styles.active]: selectedCategory.id === item.id }
+              )}
+            >
+              {item.name}
+            </li>
+          ))}
+        </ul>
+      </div>
     </div>
   );
 };
