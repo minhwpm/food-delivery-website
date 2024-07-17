@@ -24,7 +24,7 @@ const Header = () => {
           <UserDropdown user={data.user} />
         )}
         {status === "unauthenticated" && (
-          <Button url="/login">Sign in</Button>
+          <Button url="/login" size="small">Sign in</Button>
         )}
       </div>
     </nav>

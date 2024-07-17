@@ -1,14 +1,24 @@
 .button {
-  padding: 15px 25px;
   border-radius: 30px;
   background: #fff;
   cursor: pointer;
   transition: background 0.5s ease-in-out;
-  min-width: 130px;
   text-align: center;
   text-decoration: none;
   color: inherit;
+}
+
+.base {
+  min-width: 130px;
+  padding: 15px 25px;
   font-size: 1rem;
+  font-weight: 500;
+}
+
+.small {
+  min-width: 100px;
+  padding: 10px 20px;
+  font-size: 0.9rem;
   font-weight: 500;
 }
 

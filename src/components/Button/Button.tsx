@@ -9,6 +9,7 @@ interface ButtonProps {
   onClick?: () => void;
   variant?: "standard" | "primary" | "black";
   type?: "button" | "submit" | "reset";
+  size?: "small" | "base"
 }
 
 const Button: React.FC<ButtonProps> = ({
@@ -17,6 +18,7 @@ const Button: React.FC<ButtonProps> = ({
   onClick,
   variant = "standard",
   type = "button",
+  size = "base"
 }) => {
   if (url) {
     return (
@@ -26,6 +28,8 @@ const Button: React.FC<ButtonProps> = ({
           [styles.standard]: variant === "standard",
           [styles.primary]: variant === "primary",
           [styles.black]: variant === "black",
+          [styles.small]: size === "small",
+          [styles.base]: size === "base",
         })}
       >
         {children}
@@ -39,6 +43,8 @@ const Button: React.FC<ButtonProps> = ({
         [styles.standard]: variant === "standard",
         [styles.primary]: variant === "primary",
         [styles.black]: variant === "black",
+        [styles.small]: size === "small",
+        [styles.base]: size === "base",
       })}
       onClick={onClick}
     >
