@@ -4,14 +4,17 @@
   height: 30px;
   border: none;
   cursor: pointer;
-  background-color: #000;
+  background-color: var(--black-color);
   color: #fff;
   transition: all 0.3s ease-in-out;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding: 5px;
 
   &:hover {
-    background-color: var(--primary-color);
-    color: #000;
+    background-color: var(--green-color);
+    // color: #000;
     transition: all 0.3s ease-in-out;
   }
 }

@@ -23,7 +23,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  padding-top: 100px;
+  // padding-top: 100px;
 }
 
 button {
@@ -40,15 +40,17 @@ code {
 }
 
 .container {
-  padding: 20px;
+  padding: 0 20px;
   max-width: 1280px;
   margin: auto;
   overflow-x: hidden;
 }
 
-.align-center {
-  display: block;
-  margin: auto;
+.loading-screen {
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .text-center {
@@ -58,4 +60,13 @@ code {
 a {
   text-decoration: none;
   color: var(--hyperlink-color);
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.animate-spin {
+  animation: spin 1s linear infinite;
 }

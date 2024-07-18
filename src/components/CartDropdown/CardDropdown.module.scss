@@ -2,11 +2,11 @@
   position: relative;
   margin-right: 20px;
   margin-left: auto;
+  cursor: pointer;
 
   .cart-icon {
     color: var(--primary-color);
     font-size: 25px;
-    cursor: pointer;
   }
   .quantity {
     position: absolute;
