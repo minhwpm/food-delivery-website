@@ -6,11 +6,11 @@ import bcrypt from "bcrypt";
 export async function POST(req: NextRequest) {
   const user = await req.json();
 
-  const usersRef = collection(firestoreDb, "users");
-  const q = query(usersRef, where("email", "==", user.email));
-  const querySnapshot = await getDocs(q);
+  const usersRef = collection(firestoreDb, "users")
+  const userQuery = query(usersRef, where("email", "==", user.email));
+  const userSnapshot = await getDocs(userQuery);
 
-  if (!querySnapshot.empty) {
+  if (!userSnapshot.empty) {
     return NextResponse.json(
       { message: "User already exists" },
       { status: 400 }

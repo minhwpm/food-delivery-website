@@ -1,5 +1,5 @@
 import { cache } from 'react';
-import { collection, getDocs } from "firebase/firestore";
+import { collection, doc, getDocs, updateDoc, query, where } from "firebase/firestore";
 import { firestoreDb } from "@/app/firebaseConfig";
 
 export const fetchFoods = cache(async () => {
