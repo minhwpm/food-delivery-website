@@ -1,14 +1,20 @@
-import * as Tabs from "@radix-ui/react-tabs";
-import AccountForm from "@/components/AccountForm/AccountForm";
-import ChangePasswordForm from "@/components/ChangePasswordForm/ChangePasswordForm";
-import styles from "./account.module.scss";
 import { MdOutlineShoppingCartCheckout } from "react-icons/md";
 import { FaRegHeart } from "react-icons/fa";
 import { HiOutlineReceiptRefund } from "react-icons/hi";
 import { FaRegUser } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
+import * as Tabs from "@radix-ui/react-tabs";
+import AccountForm from "@/components/AccountForm/AccountForm";
+import ChangePasswordForm from "@/components/ChangePasswordForm/ChangePasswordForm";
+import styles from "./account.module.scss";
 
 export default async function AccountPage() {
+  const session = await getServerSession();
+  if (session === null) {
+    return redirect("/login")
+  }
   return (
     <main>
       <div className="container">

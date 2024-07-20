@@ -1,12 +1,11 @@
 import { NextRequest, NextResponse } from "next/server";
-import { collection, query, where, getDocs, addDoc, updateDoc, doc } from "firebase/firestore";
+import { collection, query, where, getDocs, updateDoc } from "firebase/firestore";
 import { firestoreDb } from "@/app/firebaseConfig";
 import bcrypt from "bcrypt";
 import { getServerSession } from "next-auth";
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession();
-  console.log("SESSION", session);
   if (!session) {
     return NextResponse.json({ message: "Unauthenticated" }, { status: 401 });
   }
