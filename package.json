@@ -1,55 +1,20 @@
 {
-  "name": "open-foody-web-app",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@radix-ui/react-tabs": "^1.1.0",
-    "@radix-ui/react-toast": "^1.2.1",
-    "@reduxjs/toolkit": "^1.9.3",
-    "@testing-library/jest-dom": "^5.16.5",
-    "@testing-library/react": "^13.4.0",
-    "@testing-library/user-event": "^13.5.0",
-    "@types/jest": "^27.5.2",
-    "@types/node": "^16.18.22",
-    "@types/react": "^18.0.31",
-    "@types/react-dom": "^18.0.11",
-    "bcrypt": "^5.1.1",
-    "classnames": "^2.5.1",
-    "firebase": "^10.12.2",
-    "next": "^14.2.4",
-    "next-auth": "^4.24.7",
-    "node-sass": "^9.0.0",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "react-icons": "^5.2.1",
-    "react-redux": "^8.0.5",
-    "react-scripts": "5.0.1",
-    "sass": "^1.77.6",
-    "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
-  },
+  "name": "open-foody",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/minhwpm/open-foody.git"
   },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  }
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/minhwpm/open-foody/issues"
+  },
+  "homepage": "https://github.com/minhwpm/open-foody#readme"
 }
