@@ -42,7 +42,9 @@ export default function LoginPage() {
             placeholder="Your password"
             required
           />
-          <Button type="submit">Login</Button>
+          <Link href="/forgot-password">Forgot password?</Link>
+
+          <Button type="submit" variant="black">Login</Button>
           <div>
             Don't have an account yet? <Link href="/sign-up">Sign up</Link> now
           </div>

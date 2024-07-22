@@ -1,12 +1,12 @@
 .login-form {
   max-width: 500px;
   padding: 30px 50px;
-  border: 1px solid #eee;
   display: flex;
   flex-direction: column;
   row-gap: 15px;
   margin: 30px auto 0;
   text-align: center;
+  font-size: 0.9rem;
   input {
     font-size: 1rem;
     padding: 15px 25px;
@@ -17,6 +17,6 @@
     }
   }
   button {
-    margin-top: 20px;
+    margin-top: 10px;
   }
 }
