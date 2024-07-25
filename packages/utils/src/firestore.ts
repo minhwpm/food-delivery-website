@@ -1,8 +1,7 @@
-import { cache } from 'react';
 import { collection, doc, getDocs, updateDoc, query, where } from "firebase/firestore";
-import { firestoreDb } from "@/app/firebaseConfig";
+import { firestoreDb } from "./firebaseConfig";
 
-export const fetchFoods = cache(async () => {
+export const fetchFoods = async () => {
   const foodsCollection = collection(firestoreDb, "foods");
   const foodsSnapshot = await getDocs(foodsCollection);
   const foodItems = foodsSnapshot.docs.map((doc) => ({
@@ -10,9 +9,9 @@ export const fetchFoods = cache(async () => {
     ...doc.data(),
   }));
   return foodItems;
-});
+};
 
-export const fetchFoodCategories = cache(async() => {
+export const fetchFoodCategories = async() => {
   const categoriesCollection = collection(firestoreDb, "food-categories");
   const categoriesSnapshot = await getDocs(categoriesCollection);
   const categoriesList = categoriesSnapshot.docs.map((doc) => ({
@@ -20,4 +19,4 @@ export const fetchFoodCategories = cache(async() => {
     ...doc.data(),
   }));
   return categoriesList;
-})
+}

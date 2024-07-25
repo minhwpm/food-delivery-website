@@ -5,12 +5,13 @@ import styles from "./cart.module.scss"
 import { useCart } from "@open-foody/utils"
 import { Button, CartItemA } from "@open-foody/react-components"
 import { useMemo } from "react"
+import Link from "next/link"
 
 export default function CheckoutPage() {
   const { items, handleRemoveFromCart, handleIncrementItemQuantity, handleDecrementItemQuantity } = useCart()
   const subtotal = useMemo(() => items.reduce((total, item) => total + item.price * item.quantity, 0), [items])
   const shipping = subtotal > 0 ? 5 : 0
-  const totalAmount = useMemo(() => subtotal + shipping + subtotal*0.1, [subtotal])
+  const totalAmount = useMemo(() => subtotal + shipping + subtotal*0.1, [subtotal, shipping])
 
   return (
     <main>
@@ -62,7 +63,9 @@ export default function CheckoutPage() {
                 $ {totalAmount.toFixed(2)}
               </span>
             </div>
-            <Button url="/checkout" variant="black">Checkout</Button>
+            <Button variant="black">
+              <Link href="/checkout">Checkout</Link>
+            </Button>
           </div>
       </div>
       </div>

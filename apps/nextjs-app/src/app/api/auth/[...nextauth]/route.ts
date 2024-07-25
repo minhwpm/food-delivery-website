@@ -2,7 +2,7 @@ import { NextAuthOptions } from "next-auth";
 import NextAuth from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { collection, getDocs, query, where } from "firebase/firestore";
-import { firestoreDb } from "@/app/firebaseConfig";
+import { firestoreDb } from "@open-foody/utils";
 import bcrypt from "bcrypt";
 
 const authOptions: NextAuthOptions = {

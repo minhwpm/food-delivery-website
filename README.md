@@ -16,10 +16,12 @@ This Turborepo includes the following packages/apps:
 
 ### Apps and Packages
 
-- `nextjs-app`: a [Next.js](https://nextjs.org/) app
-- `remix-app`: a [Remix](https://remix.run/) app
+- `@open-foody/nextjs-app`: a [Next.js](https://nextjs.org/) app
+- `@open-foody/remix-app`: a [Remix](https://remix.run/) app
 - `@open-foody/react-components`: a stub React component library shared by both `nextjs-app` and `remix-app` applications
+- `@open-foody/types`: a type library shared by both `nextjs-app` and `remix-app` applications
 - `@open-foody/utils`: a utils library shared by both `nextjs-app` and `remix-app` applications
+- `@open-foody/redux-store`: a state management store implemented with Redux shared by both `nextjs-app` and `remix-app` applications
 - `@open-foody/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
 - `@open-foody/typescript-config`: `tsconfig.json`s used throughout the monorepo
 
@@ -38,7 +40,7 @@ This Turborepo has some additional tools already setup for you:
 To build all apps and packages, run the following command:
 
 ```
-cd my-turborepo
+cd open-foody
 pnpm build
 ```
 
@@ -47,7 +49,7 @@ pnpm build
 To develop all apps and packages, run the following command:
 
 ```
-cd my-turborepo
+cd open-foody
 pnpm dev
 ```
 
@@ -58,7 +60,7 @@ Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo
 By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
 
 ```
-cd my-turborepo
+cd open-foody
 npx turbo login
 ```
 

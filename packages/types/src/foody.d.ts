@@ -1,3 +1,8 @@
+export enum PromotionType {
+  plusOne = "1+1",
+  gift = "gift",
+  discount = "discount",
+}
 export interface FoodItemType {
   id: string
   index: number

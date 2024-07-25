@@ -4,6 +4,7 @@ import classNames from "classnames"
 import styles from "./checkout.module.scss"
 import { useCart } from "@open-foody/utils"
 import { Button, CartItemA } from "@open-foody/react-components"
+import Link from "next/link"
 
 export default function CheckoutPage() {
   const { items, handleRemoveFromCart, handleIncrementItemQuantity, handleDecrementItemQuantity } = useCart()
@@ -67,7 +68,9 @@ export default function CheckoutPage() {
                     .toFixed(2)}
                 </h3>
               </div>
-              <Button url="/cart" variant="black">Confirm Order</Button>
+              <Button variant="black">
+                <Link href="/cart">Confirm Order</Link>
+              </Button>
             </>
           )}
         </div>

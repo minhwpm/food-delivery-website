@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { collection, query, where, getDocs, addDoc } from "firebase/firestore";
-import { firestoreDb } from "@/app/firebaseConfig";
+import { firestoreDb } from "@open-foody/utils";
 import bcrypt from "bcrypt";
 
 export async function POST(req: NextRequest) {

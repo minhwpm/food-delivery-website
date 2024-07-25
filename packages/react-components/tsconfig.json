@@ -1,27 +1,25 @@
 {
-  
-  "extends": "../../tsconfig.json",
-  "include": ["src", "src/global.d.ts"],
   "compilerOptions": {
-    "outDir": "dist",
-    "target": "ESNext",
-    "module": "ESNext",
-    "lib": ["DOM", "DOM.Iterable", "ESNext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
+    "target": "ES2015",
+    "module": "commonjs",
     "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "moduleResolution": "Node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "moduleResolution": "node",
     "jsx": "react-jsx",
-    "baseUrl": "./",
+    "esModuleInterop": true,
     "paths": {
-      "@/*": ["src/*"],
+      "@open-foody/types/*": ["../types/src/*"],
+      "@open-foody/utils/*": ["../utils/src/*"],
+      "@open-foody/redux-store/*": ["../redux-store/src/*"]
     }
   },
-  "exclude": ["node_modules", "dist"]
+  "include": ["src", "src/global.d.ts"],
+  "references": [
+    { "path": "../types" },
+    { "path": "../utils" },
+    { "path": "../redux-store" },
+  ]
 }

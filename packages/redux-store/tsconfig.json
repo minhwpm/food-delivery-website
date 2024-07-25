@@ -1,11 +1,21 @@
 {
-  "extends": "../../tsconfig.json",
   "compilerOptions": {
+    "target": "ES2015",
+    "module": "commonjs",
+    "strict": true,
+    "composite": true,
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
     "moduleResolution": "node",
-    "jsx": "react",
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
     "paths": {
       "@open-foody/types/*": ["../types/src/*"]
     }
   },
-  "include": ["src"]
+  "include": ["src"],
+  "references": [
+    { "path": "../types" },
+  ]
 }

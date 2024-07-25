@@ -1,24 +1,32 @@
 {
   "compilerOptions": {
+    "target": "esnext",
+    "module": "commonjs",
+    "lib": ["dom", "esnext"],
+    "jsx": "react-jsx",
+    "strict": true,
+    "noEmit": true,
+    "moduleResolution": "node",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "baseUrl": ".",
+    "forceConsistentCasingInFileNames": true,
     "paths": {
       "@open-foody/nextjs-app/*": ["apps/nextjs-app/src/*"],
       "@open-foody/remix-app/*": ["apps/remix-app/src/*"],
-      "@open-foody/react-components/*": ["packages/react-components/src/*"],
       "@open-foody/types/*": ["packages/types/src/*"],
-      "@open-foody/redux-store/*": ["packages/redux-store/src/*"],
       "@open-foody/utils/*": ["packages/utils/src/*"],
+      "@open-foody/redux-store/*": ["packages/redux-store/src/*"],
+      "@open-foody/react-components/*": ["packages/react-components/src/*"]
     },
-    "jsx": "react", // Add this line
-    "module": "esnext",
-    "target": "es6",
-    "esModuleInterop": true,
-    "strict": true,
-    "skipLibCheck": true,
-    "forceConsistentCasingInFileNames": true
   },
-  "include": [
-    "packages/**/*",
-    "apps/**/*"
+  "include": ["packages/**/*", "apps/**/*"],
+  "references": [
+    { "path": "./packages/react-components" },
+    { "path": "./packages/types" },
+    { "path": "./packages/redux-store" },
+    { "path": "./packages/utils" }
   ]
 }

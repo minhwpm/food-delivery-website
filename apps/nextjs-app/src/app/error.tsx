@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react'
 import { Button } from '@open-foody/react-components'
+import Link from 'next/link'
  
 export default function ErrorBoundary({
   error,
@@ -31,7 +32,9 @@ export default function ErrorBoundary({
       <div>
         <Button onClick={() => reset()}>Try Again</Button>
         <span>OR</span>
-        <Button url="/" variant="black">Go to Home page</Button>
+        <Button variant="black">
+          <Link href="./">Go to Home page</Link>
+        </Button>
       </div>
     </div>
   )

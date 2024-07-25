@@ -2,7 +2,11 @@
   "name": "open-foody",
   "version": "1.0.0",
   "description": "",
+  "private": true,
   "scripts": {
+    "build:packages": "turbo run build --filter=@open-foody/*",
+    "build:nextjs": "turbo run build --filter=@open-foody/nextjs-app",
+    "build1": "npm run build:packages && npm run build:nextjs",
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
@@ -12,15 +16,22 @@
   "devDependencies": {
     "prettier": "^3.2.5",
     "turbo": "^2.0.9",
-    "typescript": "^5.4.5"
+    "typescript": "^5.4.5",
+    "@types/node": "^16.18.22",
+    "@types/react": "^18.0.31",
+    "@types/react-dom": "^18.0.11"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
-  "packageManager": "npm@10.1.0",
+  "packageManager": "yarn@1.22.22",
   "workspaces": [
-    "apps/*",
-    "packages/*"
+    "apps/nextjs-app",
+    "apps/remix-app",
+    "packages/types",
+    "packages/utils",
+    "packages/redux-store",
+    "packages/react-components"
   ],
   "repository": {
     "type": "git",
