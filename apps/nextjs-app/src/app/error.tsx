@@ -1,7 +1,7 @@
 "use client"
 
 import { useEffect } from 'react'
-import Button from '@/components/Button/Button'
+import { Button } from '@open-foody/react-components'
  
 export default function ErrorBoundary({
   error,

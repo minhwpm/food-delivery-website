@@ -1,7 +1,6 @@
-import { FoodCategoryType, FoodItemType } from "@/types/types";
-import CategoryFilter from "../components/CategoryFilter/CategoryFilter";
-import FoodList from "../components/FoodList/FoodList";
-import { fetchFoodCategories, fetchFoods } from "@/lib/firestore";
+import { FoodCategoryType, FoodItemType } from "@open-foody/types";
+import { FoodList, CategoryFilter } from "@open-foody/react-components";
+import { fetchFoodCategories, fetchFoods } from "@open-foody/utils";
 
 export const revalidate = 3600 // revalidate the data at most every hour
 

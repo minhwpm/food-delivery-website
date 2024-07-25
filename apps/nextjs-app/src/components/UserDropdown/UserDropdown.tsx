@@ -1,10 +1,9 @@
 "use client";
-
 import Link from "next/link";
-import Button from '@/components/Button/Button';
+import { Button } from '@open-foody/react-components';
 import { FaUserAlt } from "react-icons/fa";
 import { signOut } from "next-auth/react";
-import { useToggleDropdown } from "@/lib/hooks";
+import { useToggleDropdown } from "@open-foody/utils";
 import styles from "./UserDropdown.module.scss"
 
 const UserDropdown: React.FC<{user}> = ({user}) => {

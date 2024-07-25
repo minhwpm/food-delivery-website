@@ -2,7 +2,7 @@
 
 import { StrictMode } from "react";
 import { Provider } from "react-redux";
-import store from '../store';
+import store from '@open-foody/redux-store';
 import Header from "src/components/Header/Header"
 import { SessionProvider } from "next-auth/react"
 import { Poppins } from "next/font/google";

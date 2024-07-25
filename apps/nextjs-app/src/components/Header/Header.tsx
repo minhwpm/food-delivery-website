@@ -1,14 +1,12 @@
 "use client";
 
-import SearchBox from "../SearchBox/SearchBox";
-import Button from "../Button/Button";
-import CartDropdown from "../CartDropdown/CartDropdown";
-import Link from "next/link";
-import UserDropdown from "../UserDropdown/UserDropdown";
-import { useSession } from "next-auth/react";
-import styles from "./Header.module.scss"
 import classNames from "classnames";
 import { useCallback, useEffect, useState } from "react";
+import Link from "next/link";
+import UserDropdown from "../UserDropdown/UserDropdown";
+import { SearchBox, Button, CartDropdown } from "@open-foody/react-components";
+import { useSession } from "next-auth/react";
+import styles from "./Header.module.scss"
 
 const Header = () => {
   const { data, status }  = useSession()
@@ -33,8 +31,8 @@ const Header = () => {
         {status === "authenticated" ? (
           <UserDropdown user={data.user} />
         ) : (
-          <Button url="/login" size="small">
-            Sign in
+          <Button size="small">
+            <Link href="/login">Sign in</Link>
           </Button>
         )}
       </div>

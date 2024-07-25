@@ -1,0 +1,15 @@
+{
+  "name": "@open-foody/redux-store",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.2.6",
+    "react-redux": "^9.1.2"
+  }
+}

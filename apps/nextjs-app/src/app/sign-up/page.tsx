@@ -1,6 +1,6 @@
 "use client";
 
-import Button from "src/components/Button/Button";
+import { Button } from "@open-foody/react-components";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
 import { useRouter } from "next/navigation";

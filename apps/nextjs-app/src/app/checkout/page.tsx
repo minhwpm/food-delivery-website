@@ -2,9 +2,8 @@
 
 import classNames from "classnames"
 import styles from "./checkout.module.scss"
-import { useCart } from "@/lib/hooks"
-import Button from "@/components/Button/Button"
-import CartItemA from "@/components/CartItemA/CartItemA"
+import { useCart } from "@open-foody/utils"
+import { Button, CartItemA } from "@open-foody/react-components"
 
 export default function CheckoutPage() {
   const { items, handleRemoveFromCart, handleIncrementItemQuantity, handleDecrementItemQuantity } = useCart()

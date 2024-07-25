@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "moduleResolution": "node",
+    "jsx": "react",
+    "paths": {
+      "@open-foody/types/*": ["../types/src/*"],
+      "@open-foody/redux-store/*": ["../redux-store/src/*"]
+    }
+  },
+  "include": ["src"]
+}

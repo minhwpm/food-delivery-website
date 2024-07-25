@@ -5,9 +5,8 @@ import { FaRegUser } from "react-icons/fa";
 import { RiLockPasswordLine } from "react-icons/ri";
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
+import { AccountForm, ChangePasswordForm } from "@open-foody/react-components";
 import * as Tabs from "@radix-ui/react-tabs";
-import AccountForm from "@/components/AccountForm/AccountForm";
-import ChangePasswordForm from "@/components/ChangePasswordForm/ChangePasswordForm";
 import styles from "./account.module.scss";
 
 export default async function AccountPage() {
@@ -50,7 +49,7 @@ export default async function AccountPage() {
               Billing
             </Tabs.Content>
             <Tabs.Content value="account-info" className={styles.TabContent}>
-              <AccountForm />
+              <AccountForm session={session} />
             </Tabs.Content>
             <Tabs.Content value="change-password" className={styles.TabContent}>
               <ChangePasswordForm />

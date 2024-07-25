@@ -1,8 +1,9 @@
 {
-  "name": "open-foody-web-app",
+  "name": "@open-foody/nextjs-app",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@open-foody/react-components": "*",
     "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
     "@reduxjs/toolkit": "^1.9.3",
