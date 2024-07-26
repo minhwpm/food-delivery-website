@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 interface ButtonProps {
   asChild?: boolean;
-  children: React.ReactElement;
+  children: React.ReactNode;
   onClick?: () => void;
   variant?: "standard" | "primary" | "black";
   type?: "button" | "submit" | "reset";
@@ -29,7 +29,7 @@ export const Button: React.FC<ButtonProps> = forwardRef(({
   if (asChild) {
     return (
       <>
-        {cloneElement(children, {
+        {cloneElement(<>{children}</>, {
           className: classes,
           ref
         })}
