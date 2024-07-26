@@ -28,5 +28,6 @@
     { "path": "./packages/types" },
     { "path": "./packages/redux-store" },
     { "path": "./packages/utils" }
-  ]
+  ],
+  "exclude": ["node_modules"]
 }

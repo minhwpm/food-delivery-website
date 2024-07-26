@@ -4,7 +4,7 @@ import { removeFromCart, useAppSelector, useAppDispatch } from "@open-foody/redu
 import { FaBasketShopping } from "react-icons/fa6";
 import { useToggleDropdown } from "@open-foody/utils";
 import { Button } from '../Button/Button';
-import { CartItemB } from "@open-foody/react-components";
+import { CartItemB } from "../CartItemB/CartItemB"
 import Link from "next/link"
 import styles from "./CardDropdown.module.scss"
 
@@ -59,8 +59,8 @@ export const CartDropdown = () => {
                     Shipping and taxes calculated at checkout.
                   </p>
                   <div className={styles["button-group-container"]}>
-                    <Button><Link href="/cart">View Cart</Link></Button>
-                    <Button variant="black">
+                    <Button asChild><Link href="/cart">View Cart</Link></Button>
+                    <Button variant="black" asChild>
                       <Link href="/checkout">Checkout</Link>
                     </Button>
                   </div>

@@ -31,7 +31,7 @@ const Header = () => {
         {status === "authenticated" ? (
           <UserDropdown user={data.user} />
         ) : (
-          <Button size="small">
+          <Button size="small" asChild>
             <Link href="/login">Sign in</Link>
           </Button>
         )}

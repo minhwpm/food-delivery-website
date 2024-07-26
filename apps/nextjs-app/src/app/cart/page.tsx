@@ -63,7 +63,7 @@ export default function CheckoutPage() {
                 $ {totalAmount.toFixed(2)}
               </span>
             </div>
-            <Button variant="black">
+            <Button variant="black" asChild>
               <Link href="/checkout">Checkout</Link>
             </Button>
           </div>

@@ -68,7 +68,7 @@ export default function CheckoutPage() {
                     .toFixed(2)}
                 </h3>
               </div>
-              <Button variant="black">
+              <Button variant="black" asChild>
                 <Link href="/cart">Confirm Order</Link>
               </Button>
             </>
