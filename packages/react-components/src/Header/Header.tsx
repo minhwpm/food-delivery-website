@@ -1,9 +1,8 @@
 "use client";
-
 import classNames from "classnames";
-import { useCallback, useEffect, useState } from "react";
 import Link from "next/link";
-import UserDropdown from "../UserDropdown/UserDropdown";
+import { useCallback, useEffect, useState } from "react";
+import { UserDropdown } from "../UserDropdown/UserDropdown";
 import { SearchBox } from "../SearchBox/SearchBox";
 import { Button } from "../Button/Button";
 import { CartDropdown } from "../CartDropdown/CartDropdown";
