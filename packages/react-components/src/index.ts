@@ -9,6 +9,8 @@ export { CategoryFilter } from "./CategoryFilter/CategoryFilter";
 export { ChangePasswordForm } from "./ChangePasswordForm/ChangePasswordForm";
 export { FoodCard } from "./FoodCard/FoodCard";
 export { FoodList } from "./FoodList/FoodList";
+export { Header } from "./Header/Header";
 export { ImageWithFallback } from "./ImageWithFallback/ImageWithFallback";
 export { SearchBox } from "./SearchBox/SearchBox";
 export { SearchResultNotification } from "./SearchResultNotification/SearchResultNotification";
+export { UserDropdown } from "./UserDropdown/UserDropdown";

@@ -1,4 +1,4 @@
-import React, { cloneElement, forwardRef, LegacyRef } from "react";
+import React, { Attributes, cloneElement, forwardRef, isValidElement, LegacyRef } from "react";
 import styles from "./Button.module.scss";
 import classNames from "classnames";
 
@@ -11,7 +11,7 @@ interface ButtonProps {
   size?: "small" | "base"
 }
 
-export const Button: React.FC<ButtonProps> = forwardRef(({
+export const Button: React.FC<ButtonProps> = forwardRef<HTMLButtonElement, ButtonProps>(({
   asChild,
   children,
   onClick,
@@ -26,19 +26,15 @@ export const Button: React.FC<ButtonProps> = forwardRef(({
     [styles.small]: size === "small",
     [styles.base]: size === "base",
   })
-  if (asChild) {
-    return (
-      <>
-        {cloneElement(<>{children}</>, {
-          className: classes,
-          ref
-        })}
-      </>
-    )
+  if (asChild && isValidElement(children)) {
+    return cloneElement(children, {
+      className: classes,
+      ref
+    } as any)
   }
   return (
     <button
-      ref={ref as LegacyRef<HTMLButtonElement>}
+      ref={ref}
       type={type}
       className={classes}
       onClick={onClick}
