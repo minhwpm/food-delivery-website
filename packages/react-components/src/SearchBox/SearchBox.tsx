@@ -17,7 +17,10 @@ export const SearchBox = () => {
   }, [inputValue])
 
   useEffect(() => {
-    dispatch(searchByName(debouncedValue))
+    if (debouncedValue) {
+      console.log("SEARCH!!!!")
+      dispatch(searchByName(debouncedValue))
+    }
   }, [debouncedValue, dispatch])
 
   return (

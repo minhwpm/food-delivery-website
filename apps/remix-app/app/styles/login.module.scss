@@ -1,0 +1,22 @@
+.login-form {
+  max-width: 500px;
+  padding: 30px 50px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 15px;
+  margin: 30px auto 0;
+  text-align: center;
+  font-size: 0.9rem;
+  input {
+    font-size: 1rem;
+    padding: 15px 25px;
+    border: 1px solid #eee;
+    border-radius: 30px;
+    &:focus {
+      border: 1px solid #aaa;
+    }
+  }
+  button {
+    margin-top: 10px;
+  }
+}

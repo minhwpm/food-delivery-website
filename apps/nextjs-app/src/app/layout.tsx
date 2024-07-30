@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
-        <title>Foodie</title>
+        <title>Open Foody</title>
         <meta name="description" content="Foodie - Food Delivery Web App" />
       </head>
       <body className={fontClass.className}>

@@ -5,7 +5,12 @@ import {
   Scripts,
   ScrollRestoration,
 } from "@remix-run/react";
-import "./tailwind.css";
+import { StrictMode } from "react";
+import { Provider } from "react-redux";
+import store from '@open-foody/redux-store';
+import { Header } from "@open-foody/react-components"
+import { SessionProvider } from "next-auth/react"
+import "./index.scss"
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -17,9 +22,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
-        <ScrollRestoration />
-        <Scripts />
+        {/* <StrictMode> */}
+          <SessionProvider>
+            <Provider store={store}>
+              <Header />
+              {children}
+              <ScrollRestoration />
+              <Scripts />
+            </Provider>
+          </SessionProvider>
+        {/* </StrictMode> */}
       </body>
     </html>
   );

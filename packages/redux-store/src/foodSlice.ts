@@ -2,7 +2,7 @@ import { Dispatch, createSlice } from "@reduxjs/toolkit";
 import { fetchFoods } from "@open-foody/utils";
 import { FoodItemType } from "@open-foody/types";
 
-const pageSize = 12;
+const PAGE_SIZE = 12;
 
 interface FoodState {
   search: {
@@ -54,7 +54,7 @@ function filterData(data: Array<FoodItemType>, state: FoodState): [Array<FoodIte
           item.name.toLowerCase().includes(state.search.keyword))
       );
     })
-    return [filtered.slice(0, pageSize), filtered.length];
+    return [filtered.slice(0, PAGE_SIZE), filtered.length];
 }
 
 const foodSlice = createSlice({
@@ -62,6 +62,7 @@ const foodSlice = createSlice({
   initialState,
   reducers: {
     initFoodData(state, action) {
+      console.log("initFoodData")
       state.foodList.all = action.payload;
       [ state.foodList.showed, state.search.resultNo ] = filterData(state.foodList.all, state);
     },
@@ -73,7 +74,7 @@ const foodSlice = createSlice({
       state.pagination.hasMore = true;
 
       [ state.foodList.showed, state.search.resultNo ] = filterData(state.foodList.all, state);
-      if (state.foodList.showed.length < pageSize)
+      if (state.foodList.showed.length < PAGE_SIZE)
         state.pagination.hasMore = false;
     },
     searchByName(state, action) {
@@ -83,17 +84,18 @@ const foodSlice = createSlice({
       state.pagination.hasMore = true;
 
       [ state.foodList.showed, state.search.resultNo ] = filterData(state.foodList.all, state);
-      if (state.foodList.showed.length < pageSize)
+      if (state.foodList.showed.length < PAGE_SIZE)
         state.pagination.hasMore = false;
     },
     nextPage(state) {
+      const lastItemOfCurrentPage = state.foodList.showed[state.foodList.showed.length - 1]
       const [ nextList ] = filterData(
         state.foodList.all.slice(
-          state.foodList.showed[state.foodList.showed.length - 1].index + 1
+          state.foodList.all.findIndex(item => item.id === lastItemOfCurrentPage.id) + 1
         ),
         state
       );
-      if (nextList.length < pageSize) state.pagination.hasMore = false;
+      if (nextList.length < PAGE_SIZE) state.pagination.hasMore = false;
       state.foodList.showed = state.foodList.showed.concat(nextList);
     },
     updateNotification(state, action) {

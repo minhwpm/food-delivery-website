@@ -32,7 +32,7 @@ export default function ErrorBoundary({
       <div>
         <Button onClick={() => reset()}>Try Again</Button>
         <span>OR</span>
-        <Button variant="black">
+        <Button variant="black" asChild>
           <Link href="./">Go to Home page</Link>
         </Button>
       </div>

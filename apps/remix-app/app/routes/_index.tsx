@@ -1,48 +1,31 @@
-import type { MetaFunction } from "@remix-run/node";
+import type { LoaderFunction, MetaFunction } from "@remix-run/node";
+import { fetchFoodCategories, fetchFoods } from "@open-foody/utils";
+import { useLoaderData } from "@remix-run/react";
+import { CategoryFilter, FoodList } from "@open-foody/react-components";
+import { FoodCategoryType, FoodItemType } from "@open-foody/types";
 
 export const meta: MetaFunction = () => {
   return [
-    { title: "New Remix App" },
+    { title: "Open Foody" },
     { name: "description", content: "Welcome to Remix!" },
   ];
 };
 
+export const loader: LoaderFunction = async () => {
+  const foodItems = await fetchFoods()
+  const categories = await fetchFoodCategories()
+  return { foodItems, categories }
+}
+
 export default function Index() {
+  const { foodItems, categories } = useLoaderData<typeof loader>()
+  
   return (
-    <div className="font-sans p-4">
-      <h1 className="text-3xl">Welcome to Remix</h1>
-      <ul className="list-disc mt-4 pl-6 space-y-2">
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/quickstart"
-            rel="noreferrer"
-          >
-            5m Quick Start
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/start/tutorial"
-            rel="noreferrer"
-          >
-            30m Tutorial
-          </a>
-        </li>
-        <li>
-          <a
-            className="text-blue-700 underline visited:text-purple-900"
-            target="_blank"
-            href="https://remix.run/docs"
-            rel="noreferrer"
-          >
-            Remix Docs
-          </a>
-        </li>
-      </ul>
-    </div>
+    <main>
+      <div>
+        { !!categories.length && <CategoryFilter categories={categories as FoodCategoryType[]} />}
+        { !!foodItems.length && <FoodList foodItems={foodItems as FoodItemType[]} />}
+      </div>
+    </main>
   );
 }

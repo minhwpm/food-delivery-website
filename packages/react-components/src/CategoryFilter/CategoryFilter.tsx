@@ -9,7 +9,6 @@ export const CategoryFilter: React.FC<{ categories: Array<FoodCategoryType> }> =
 }) => {
   const { selectedCategory } = useAppSelector((s) => s.food);
   const dispatch = useAppDispatch();
-
   return (
     <div>
       <div className={styles["category-list"]}>

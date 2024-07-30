@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect } from "react";
 import { initFoodData, nextPage, useAppSelector, useAppDispatch } from "@open-foody/redux-store";
 import { FoodItemType } from "@open-foody/types";
@@ -15,7 +14,6 @@ export const FoodList: React.FC<{
     (s) => s.food
   );
   const { foodList, pagination, notification } = useAppSelector((s) => s.food);
-
   useEffect(() => {
     dispatch(initFoodData(foodItems))
   }, [dispatch, foodItems])
@@ -31,13 +29,14 @@ export const FoodList: React.FC<{
           <FoodCard key={item.id} item={item} />
         ))}
       </div>
-      {pagination.hasMore ? (
-        <div className="text-center">
+      
+      <div className="text-center">
+        {foodList.showed.length > 0 && pagination.hasMore ? (
           <Button onClick={() => dispatch(nextPage())}>Show more</Button>
-        </div>
-      ) : (
-        <div className="text-center">No more results</div>
-      )}
+        ) : (
+          "No more results"
+        )}
+      </div>
     </div>
   );
 };

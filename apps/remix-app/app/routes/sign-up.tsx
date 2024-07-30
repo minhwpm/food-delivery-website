@@ -3,13 +3,12 @@
 import { Button } from "@open-foody/react-components";
 import { signIn } from "next-auth/react";
 import { useState } from "react";
-import { useRouter } from "next/navigation";
-import styles from "../login/login.module.scss";
-import Link from "next/link";
+import { Link, useNavigate } from "@remix-run/react";
+import styles from "../styles/login.module.scss";
 
 export default function SignUpPage() {
   const [message, setMessage] = useState("");
-  const router = useRouter();
+  const navigate = useNavigate();
 
   async function handleSignUp(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -37,7 +36,7 @@ export default function SignUpPage() {
     if (result?.error) {
       setMessage(result.error);
     } else {
-      router.push("/")
+      navigate("/")
     }
   }
 
@@ -54,7 +53,7 @@ export default function SignUpPage() {
           />
           <Button type="submit">Sign Up</Button>
           <div>
-            Already have an account? <Link href="/login">Login</Link> now
+            Already have an account? <Link to="/login">Login</Link> now
           </div>
           {message && <p>{message}</p>}
         </form>

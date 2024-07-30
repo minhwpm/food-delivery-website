@@ -1,14 +1,12 @@
-"use client";
-import Link from "next/link";
+import { Link, useNavigate } from "@remix-run/react";
 import { Button } from "@open-foody/react-components";
 import { useState } from "react";
 import { signIn } from "next-auth/react";
-import { useRouter } from "next/navigation";
-import styles from "./login.module.scss";
+import styles from "../styles/login.module.scss";
 
 export default function LoginPage() {
   const [errorMessage, setErrorMessage] = useState("");
-  const router = useRouter();
+  const navigate = useNavigate();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -26,7 +24,7 @@ export default function LoginPage() {
     if (result?.error) {
       setErrorMessage(result.error);
     } else {
-      router.push("/")
+      navigate("/")
     }
   }
 
@@ -41,11 +39,11 @@ export default function LoginPage() {
             placeholder="Your password"
             required
           />
-          <Link href="/forgot-password">Forgot password?</Link>
+          <Link to="/forgot-password">Forgot password?</Link>
 
           <Button type="submit" variant="black">Login</Button>
           <div>
-            Don't have an account yet? <Link href="/sign-up">Sign up</Link> now
+            Don&apos;t have an account yet? <Link to="/sign-up">Sign up</Link> now
           </div>
           {errorMessage && <p>{errorMessage}</p>}
         </form>
