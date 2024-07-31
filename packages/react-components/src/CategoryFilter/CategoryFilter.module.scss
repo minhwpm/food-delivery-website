@@ -5,31 +5,30 @@
     display: flex;
     gap: 2px;
     overflow-x: auto;
-  }
-
-  li {
-    list-style-type: none;
-    padding: 7px 23px;
-    cursor: pointer;
-    flex-basis: 80px;
-    flex-shrink: 0;
-    border-radius: 30px;
-    text-align: center;
-    font-weight: 600;
-    transition: background-color ease 0.3s, color ease 0.3s;
-
-    &:hover {
-      background-color: rgba(var(--black-color-rgb), 0.5);
-      color: #fff;
-    }
-
-    &.active {
-      background-color: var(--black-color);
-      color: #fff;
-    }
-
-    &:not(:first-child) {
-      /* border-left: none; */
+    li {
+      list-style-type: none;
+      padding: 7px 20px;
+      cursor: pointer;
+      flex-basis: 80px;
+      flex-shrink: 0;
+      border-radius: 30px;
+      text-align: center;
+      font-weight: 600;
+      transition: background-color ease 0.3s, color ease 0.3s;
+  
+      &:hover {
+        background-color: rgba(var(--black-color-rgb), 0.5);
+        color: #fff;
+      }
+  
+      &.active {
+        background-color: var(--black-color);
+        color: #fff;
+      }
+  
+      &:not(:first-child) {
+        /* border-left: none; */
+      }
     }
   }
 }

@@ -3,6 +3,7 @@ import { Badge } from "../Badge/Badge"
 import { ImageWithFallback } from "../ImageWithFallback/ImageWithFallback"
 import { AddToCart } from "../AddToCart/AddToCart";
 import { FaStar } from "react-icons/fa6";
+import { CiClock2 } from "react-icons/ci";
 import { FoodItemType } from "@open-foody/types";
 import { useCart } from "@open-foody/utils";
 import styles from "./FoodCard.module.scss"
@@ -21,9 +22,11 @@ export const FoodCard: React.FC<{ item: FoodItemType }> = ({item}) => {
     isNew,
     minCookTime,
     maxCookTime,
+    ingredient,
     name,
     imageUrl,
   } = item;
+  console.log("Food item", item);
   const { handleAddToCart } = useCart()
 
   return (
@@ -35,21 +38,28 @@ export const FoodCard: React.FC<{ item: FoodItemType }> = ({item}) => {
           src={imageUrl}
           alt={name}
         />
+        {isNew && (
+          <div className={classNames(styles.tag, styles.new)}>New</div>
+        )}
       </div>
       <div className={styles.info}>
         <h3 className={styles.title}>{name}</h3>
+        
         <div className={styles["tag-box"]}>
           <div className={styles.tag}>
-            <FaStar color="#6A6466" />
+            <FaStar className={styles.star} />
             {rating.toFixed(1)}
           </div>
           <div className={styles.tag}>
-            {minCookTime}-{maxCookTime} min
+            <CiClock2 className={styles.clock} />{minCookTime}-{maxCookTime} min
           </div>
-          {isNew && (
-            <div className={classNames(styles.tag, styles.new)}>New</div>
-          )}
+          
         </div>
+        { ingredient && (
+          <div className={styles.ingredient}>
+            {ingredient}
+          </div>
+        )}
         <div className={styles.price}>${price.toFixed(2)}</div>
         <div className={styles["btn-wrapper"]}>
           <AddToCart item={item} handleAddToCart={handleAddToCart} />

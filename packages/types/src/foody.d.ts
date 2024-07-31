@@ -12,6 +12,7 @@ export interface FoodItemType {
   categoryId: string
   minCookTime: number 
   maxCookTime: number
+  ingredient: string
   price: number
   restaurant: string
   name: string

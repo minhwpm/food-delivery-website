@@ -39,18 +39,29 @@
       margin-top: 15px;
 
       .tag {
-        display: inline-block;
-
-        &.new {
-          color: var(--green-color);
-          font-weight: 600;
-        }
-
+        display: inline-flex;
+        align-items: center;
+        color: var(--grey-color);
         svg {
           margin-right: 5px;
+          &.star {
+            height: 15px;
+            width: 15px;
+            color: var(--yellow-color);
+          }
+          &.clock {
+            height: 15px;
+            width: 15px;
+          }
         }
       }
+      
     }
+  }
+  .ingredient {
+    margin: 5px 0;
+    font-size: 0.85rem;
+    color: var(--grey-color);
   }
 
   .thumbnail-wrapper {
@@ -58,7 +69,7 @@
     overflow: hidden;
     flex-shrink: 0;
     flex: 1;
-    padding:10px;
+    padding: 10px;
     .thumbnail {
       width: 100%;
       height: auto;
@@ -66,6 +77,17 @@
       display: block;
       border-radius: 15px;
       object-fit: cover;
+    }
+    .new {
+      position: absolute;
+      top: 15px;
+      right: 15px;
+      color: #fff;
+      padding: 1px 6px;
+      background-color: var(--green-color);
+      font-weight: 600;
+      font-size: 0.75rem;
+      border-radius: 5px;
     }
   }
 
