@@ -3,16 +3,17 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@open-foody/react-components": "*",
+    "@open-foody/redux-store": "*",
     "@open-foody/types": "*",
     "@open-foody/utils": "*",
-    "@open-foody/redux-store": "*",
-    "@open-foody/react-components": "*",
     "@radix-ui/react-tabs": "^1.1.0",
     "@radix-ui/react-toast": "^1.2.1",
     "@reduxjs/toolkit": "^1.9.3",
     "bcrypt": "^5.1.1",
     "classnames": "^2.5.1",
     "firebase": "^10.12.2",
+    "firebase-admin": "^12.3.0",
     "next": "^14.2.4",
     "next-auth": "^4.24.7",
     "node-sass": "^9.0.0",
@@ -24,14 +25,14 @@
     "web-vitals": "^2.1.4"
   },
   "devDependencies": {
-    "@types/jest": "^27.5.2",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-    "typescript": "^5",
+    "@types/jest": "^27.5.2",
     "@types/node": "^20",
     "@types/react": "^18",
-    "@types/react-dom": "^18"
+    "@types/react-dom": "^18",
+    "typescript": "^5"
   },
   "scripts": {
     "dev": "next dev",

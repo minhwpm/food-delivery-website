@@ -1,8 +1,6 @@
-import { NextAuthOptions } from "next-auth";
-import NextAuth from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { collection, getDocs, query, where } from "firebase/firestore";
-import { firestoreDb } from "@open-foody/utils";
+import { firestoreAdmin } from "@open-foody/utils/src/firebase/firebaseAdmin";
 import bcrypt from "bcrypt";
 
 const authOptions: NextAuthOptions = {
@@ -15,15 +13,14 @@ const authOptions: NextAuthOptions = {
       async authorize(credentials) {
         const { email, password } = credentials as { email: string, password: string };
 
-        const usersRef = collection(firestoreDb, "users")
-        const q = query(usersRef, where("email", "==", email));
-        const querySnapshot = await getDocs(q);
+        const usersRef = firestoreAdmin.collection("users")
+        const userSnapshot = await  usersRef.where("email", "==", email).get();;
 
-        if (querySnapshot.empty) {
+        if (userSnapshot.empty) {
           throw new Error("No user found with this email");
         }
 
-        const userDoc = querySnapshot.docs[0]
+        const userDoc = userSnapshot.docs[0]
         const user = userDoc.data();
 
         if (!await bcrypt.compare(password, user.password)) {

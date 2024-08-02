@@ -1,33 +1,7 @@
 "use client";
 import { addToCart, decrementItemQuantity, incrementItemQuantity, removeFromCart, useAppDispatch, useAppSelector } from "@open-foody/redux-store"
 import { FoodItemType } from "@open-foody/types"
-import { useCallback, useEffect, useRef, useState } from "react"
-
-export const useToggleDropdown = () => {
-  const dropdownRef = useRef<HTMLDivElement>(null)
-  const [ dropdownOpen, setDropdownOpen ] = useState(false)
-
-  const toggleDropdown = () => {
-    setDropdownOpen(!dropdownOpen)
-  }
-
-  const handleClickOutside = (event: MouseEvent) => {
-    if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
-      setDropdownOpen(false)
-    }
-  }
-
-  useEffect(() => {
-    if (dropdownOpen) {
-      document.addEventListener("mousedown", handleClickOutside)
-    } else {
-      document.removeEventListener("mousedown", handleClickOutside)
-    }
-    return () => document.removeEventListener("mousedown", handleClickOutside)
-  }, [dropdownOpen])
-
-  return { dropdownRef, dropdownOpen, toggleDropdown }
-}
+import { useCallback } from "react"
 
 export const useCart = () => {
   const { items } = useAppSelector((s) => s.cart);

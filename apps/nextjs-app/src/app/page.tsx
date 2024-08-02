@@ -7,11 +7,12 @@ export const revalidate = 3600 // revalidate the data at most every hour
 export default async function Home() {
   const foodItems = await fetchFoods()
   const categories = await fetchFoodCategories()
+  
   return (
     <main>
       <div className="">
         { !!categories.length && <CategoryFilter categories={categories as FoodCategoryType[]} />}
-        { !!foodItems.length && <FoodList foodItems={foodItems as FoodItemType[]} />}
+        { !!foodItems.length && <FoodList foodItemsList={foodItems as FoodItemType[]} />}
       </div>
     </main>
   );

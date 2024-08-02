@@ -71,3 +71,25 @@ a {
 .animate-spin {
   animation: spin 1s linear infinite;
 }
+
+.error-container {
+  padding: 20px;
+  max-width: 650px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  font-size: 18px;
+  h2 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+  }
+  .button-group {
+    margin-top: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 25px;
+    align-self: center;
+  }
+}

@@ -1,8 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
-import { collection, query, where, getDocs, updateDoc } from "firebase/firestore";
-import { firestoreDb } from "@open-foody/utils";
-import bcrypt from "bcrypt";
+import { firestoreAdmin } from "@open-foody/utils/src/firebase/firebaseAdmin";
 import { getServerSession } from "next-auth";
+import bcrypt from "bcrypt";
 
 export async function POST(req: NextRequest) {
   const session = await getServerSession();
@@ -14,8 +13,8 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing fields" });
   }
   try {
-    const userQuery = query(collection(firestoreDb, "users"), where("email", "==", session.user.email));
-    const userSnapshot = await getDocs(userQuery);
+    const usersRef = firestoreAdmin.collection("users")
+    const userSnapshot = await usersRef.where("email", "==", session.user.email).get();
     if (userSnapshot.empty) {
       return NextResponse.json(
         { error: "User not found" },
@@ -33,7 +32,7 @@ export async function POST(req: NextRequest) {
       );
     }
     const hashedPassword = await bcrypt.hash(newPassword, 10);
-    await updateDoc(userDoc.ref, { password: hashedPassword });
+    await userDoc.ref.update({ password: hashedPassword });
     return NextResponse.json(
       { message: "Password changed successfully" },
       { status: 200 }

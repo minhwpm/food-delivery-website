@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import { searchByName, useAppDispatch } from "@open-foody/redux-store";
 import { CiSearch } from "react-icons/ci";
 import styles from "./SearchBox.module.scss"
+import { fetchFoods } from "@open-foody/utils/src/firebase/firestore";
+import { FoodItemType } from "@open-foody/types";
 
 export const SearchBox = () => {
   const dispatch = useAppDispatch();
@@ -17,9 +19,22 @@ export const SearchBox = () => {
   }, [inputValue])
 
   useEffect(() => {
+    const search = async() => {
+      const foodItems = await fetchFoods(undefined, undefined, false) as FoodItemType[]
+      console.log("SEARCH", debouncedValue, foodItems)
+      // Perform case-insensitive filtering
+      const searchKeyLower = debouncedValue.toLowerCase();
+      const filteredFoods = foodItems.filter((food) =>
+        food.name.toLowerCase().includes(searchKeyLower)
+      );
+
+      dispatch(searchByName({
+        searchKey: debouncedValue,
+        result: filteredFoods
+      }))
+    }
     if (debouncedValue) {
-      console.log("SEARCH!!!!")
-      dispatch(searchByName(debouncedValue))
+      search()
     }
   }, [debouncedValue, dispatch])
 

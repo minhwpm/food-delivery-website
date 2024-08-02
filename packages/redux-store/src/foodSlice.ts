@@ -1,9 +1,8 @@
-import { Dispatch, createSlice } from "@reduxjs/toolkit";
+import { Action, ThunkAction, createSlice } from "@reduxjs/toolkit";
 import { fetchFoods } from "@open-foody/utils";
 import { FoodItemType } from "@open-foody/types";
 
 const PAGE_SIZE = 12;
-
 interface FoodState {
   search: {
     keyword: string;
@@ -14,7 +13,7 @@ interface FoodState {
     hasMore: boolean;
   };
   selectedCategory: {
-    id: string;
+    id: string | null;
     name: string;
   };
   foodList: {
@@ -34,8 +33,8 @@ const initialState: FoodState = {
     hasMore: true,
   },
   selectedCategory: {
-    id: "all",
-    name: "All",
+    id: null,
+    name: "None",
   },
   foodList: {
     all: [],
@@ -44,59 +43,32 @@ const initialState: FoodState = {
   notification: ""
 };
 
-function filterData(data: Array<FoodItemType>, state: FoodState): [Array<FoodItemType>, number] {
-  const filtered = data
-    .filter((item) => {
-      return (
-        (state.selectedCategory.id === "all" ||
-          item.categoryId === state.selectedCategory.id) &&
-        (state.search.keyword === "" ||
-          item.name.toLowerCase().includes(state.search.keyword))
-      );
-    })
-    return [filtered.slice(0, PAGE_SIZE), filtered.length];
-}
-
 const foodSlice = createSlice({
   name: "food",
   initialState,
   reducers: {
     initFoodData(state, action) {
-      console.log("initFoodData")
-      state.foodList.all = action.payload;
-      [ state.foodList.showed, state.search.resultNo ] = filterData(state.foodList.all, state);
+      state.foodList.showed = action.payload
     },
     changeCategory(state, action) {
       state.selectedCategory.id = action.payload.id;
       state.selectedCategory.name = action.payload.name;
-      //reset state for pagination
-      state.pagination.currentNo = 1;
-      state.pagination.hasMore = true;
-
-      [ state.foodList.showed, state.search.resultNo ] = filterData(state.foodList.all, state);
-      if (state.foodList.showed.length < PAGE_SIZE)
-        state.pagination.hasMore = false;
+      state.foodList.showed = []
+      state.pagination.currentNo = 1; // Reset pagination when changing category
+      state.pagination.hasMore = true; // Reset hasMore when changing category
     },
     searchByName(state, action) {
-      state.search.keyword = action.payload.toLowerCase().trim();
-      //reset state for pagination
-      state.pagination.currentNo = 1;
-      state.pagination.hasMore = true;
-
-      [ state.foodList.showed, state.search.resultNo ] = filterData(state.foodList.all, state);
-      if (state.foodList.showed.length < PAGE_SIZE)
-        state.pagination.hasMore = false;
+      state.search.keyword = action.payload.searchKey.toLowerCase().trim();
+      state.search.resultNo = action.payload.result.length;
+      state.foodList.showed = action.payload.result;
+      state.pagination.currentNo = 1; // Reset pagination when changing category
+      state.pagination.hasMore = true; // Reset hasMore when changing category
     },
-    nextPage(state) {
-      const lastItemOfCurrentPage = state.foodList.showed[state.foodList.showed.length - 1]
-      const [ nextList ] = filterData(
-        state.foodList.all.slice(
-          state.foodList.all.findIndex(item => item.id === lastItemOfCurrentPage.id) + 1
-        ),
-        state
-      );
-      if (nextList.length < PAGE_SIZE) state.pagination.hasMore = false;
-      state.foodList.showed = state.foodList.showed.concat(nextList);
+    nextPage(state, action) {
+      state.pagination.currentNo = action.payload; // Append new items to the existing list
+    },
+    updateFoodList(state, action) {
+      state.foodList.showed = state.foodList.showed.concat(action.payload); // Append new items to the existing list
     },
     updateNotification(state, action) {
       state.notification = action.payload
@@ -104,15 +76,26 @@ const foodSlice = createSlice({
   },
 });
 
-export const fetchFoodData = () => async (dispatch: Dispatch) => {
+export const fetchFoodData = (): ThunkAction<void, FoodState, unknown, Action> => async (dispatch, getState) => {
+  const state = getState() as FoodState; // Access the current state
   try {
-    const foodItems = await fetchFoods()
-    dispatch(initFoodData(foodItems))
+    const lastItem = state.foodList.showed[state.foodList.showed.length - 1];
+    const newFoodItems = await fetchFoods(
+      lastItem,
+      state.selectedCategory.id ?? undefined,
+    );
+    if (newFoodItems.length > 0) {
+      dispatch(updateFoodList(newFoodItems));
+      dispatch(nextPage(state.pagination.currentNo + 1)); // Increment the page number
+    } else {
+      dispatch(updateNotification("No more food items available.")); // Handle when there are no more items
+      state.pagination.hasMore = false; // Update hasMore to false
+    }
   } catch(e) {
     console.error(e)
     dispatch(updateNotification("Can't fetch food data. Please try again later."))
   }
 };
 
-export const {initFoodData, changeCategory, searchByName, nextPage, updateNotification} = foodSlice.actions;
+export const {initFoodData, updateFoodList, changeCategory, searchByName, nextPage, updateNotification} = foodSlice.actions;
 export default foodSlice;

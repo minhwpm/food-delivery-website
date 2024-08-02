@@ -15,11 +15,11 @@ export default function ErrorBoundary({
     console.error(error);
   }, [error]);
   return (
-    <div className="">
+    <div className="error-container">
       <h2 className="">
         Something went wrong
       </h2>
-      <div className="">
+      <div>
         <p>
           We’re sorry, the page you were looking for couldn’t be found. The link
           you followed may either be broken or no longer exist.
@@ -29,7 +29,7 @@ export default function ErrorBoundary({
           below:
         </p>
       </div>
-      <div>
+      <div className="button-group">
         <Button onClick={() => reset()}>Try Again</Button>
         <span>OR</span>
         <Button variant="black" asChild>

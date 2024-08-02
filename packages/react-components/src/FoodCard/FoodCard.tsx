@@ -26,7 +26,6 @@ export const FoodCard: React.FC<{ item: FoodItemType }> = ({item}) => {
     name,
     imageUrl,
   } = item;
-  console.log("Food item", item);
   const { handleAddToCart } = useCart()
 
   return (
