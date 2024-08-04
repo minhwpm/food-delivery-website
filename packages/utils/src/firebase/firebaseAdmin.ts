@@ -1,7 +1,7 @@
 import admin from "firebase-admin"
 
 if (!admin.apps.length) {
-  const firebaseAdminCredential = process.env.FIREBASE_ADMIN_CREDENTIAL_BASE64;
+  const firebaseAdminCredential = process.env.FIREBASE_ADMIN;
 
   if (!firebaseAdminCredential) {
     throw new Error('Firebase admin credential is not defined.');
