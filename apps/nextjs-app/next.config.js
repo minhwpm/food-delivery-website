@@ -4,6 +4,9 @@ const path = require('path');
 module.exports = {
   // output: 'export', // Outputs a Single-Page Application (SPA).
   // distDir: './dist', // Changes the build output directory to `./dist/`.
+  env: {
+    FIREBASE_ADMIN_CREDENTIAL: process.env.FIREBASE_ADMIN_CREDENTIAL,
+  },
   webpack: (config, { isServer }) => {
     config.resolve.alias = {
       ...config.resolve.alias,
