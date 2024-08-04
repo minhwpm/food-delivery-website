@@ -2,7 +2,7 @@ import admin from "firebase-admin"
 
 if (!admin.apps.length) {
   const firebaseAdminCredential = process.env.FIREBASE_ADMIN_CREDENTIAL;
-  console.log("NEXT_PUBLIC_FIREBASE_PROJECT_ID", process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID);
+  console.log("FIREBASE_TEST", process.env.FIREBASE_TEST);
   console.log("FIREBASE_ADMIN_CREDENTIAL", firebaseAdminCredential);
 
   if (!firebaseAdminCredential) {
