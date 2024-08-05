@@ -11,7 +11,7 @@ const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         const { email, password } = credentials as { email: string, password: string };
-        const { firestoreAdmin } = await import('@/helper/firebaseAdmin');
+        const { firestoreAdmin } = await import('@open-foody/utils/src/firebase/firebaseAdmin');
         const usersRef = firestoreAdmin.collection("users")
         const userSnapshot = await  usersRef.where("email", "==", email).get();;
 

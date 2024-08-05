@@ -3,7 +3,7 @@ import bcrypt from "bcrypt";
 
 export async function POST(req: NextRequest) {
   const user = await req.json();
-  const { firestoreAdmin } = await import('@/helper/firebaseAdmin');
+  const { firestoreAdmin } = await import('@open-foody/utils/src/firebase/firebaseAdmin');
   const usersRef = firestoreAdmin.collection("users")
   const userSnapshot = await usersRef.where("email", "==", user.email).get();
 

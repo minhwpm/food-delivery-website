@@ -12,7 +12,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Missing fields" });
   }
   try {
-    const { firestoreAdmin } = await import('@/helper/firebaseAdmin');
+    const { firestoreAdmin } = await import('@open-foody/utils/src/firebase/firebaseAdmin');
     const usersRef = firestoreAdmin.collection("users")
     const userSnapshot = await usersRef.where("email", "==", session.user.email).get();
     if (userSnapshot.empty) {
