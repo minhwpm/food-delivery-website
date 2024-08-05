@@ -1,6 +1,5 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { firestoreAdmin } from "@/helper/firebaseAdmin";
 import bcrypt from "bcrypt";
 
 const authOptions: NextAuthOptions = {
@@ -12,7 +11,7 @@ const authOptions: NextAuthOptions = {
       },
       async authorize(credentials) {
         const { email, password } = credentials as { email: string, password: string };
-
+        const { firestoreAdmin } = await import('@/helper/firebaseAdmin');
         const usersRef = firestoreAdmin.collection("users")
         const userSnapshot = await  usersRef.where("email", "==", email).get();;
 

@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import { firestoreAdmin } from "@/helper/firebaseAdmin";
 import bcrypt from "bcrypt";
 
 export async function POST(req: NextRequest) {
   const user = await req.json();
-
+  const { firestoreAdmin } = await import('@/helper/firebaseAdmin');
   const usersRef = firestoreAdmin.collection("users")
   const userSnapshot = await usersRef.where("email", "==", user.email).get();
 
