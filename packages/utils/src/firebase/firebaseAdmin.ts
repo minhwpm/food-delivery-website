@@ -2,9 +2,6 @@ import admin from "firebase-admin"
 
 if (!admin.apps.length) {
   const firebaseAdminCredential = process.env.FIREBASE_ADMIN_CREDENTIAL;
-  console.log("FOOD_API", process.env.FOOD_API);
-  console.log("FIREBASE_TEST", process.env.FIREBASE_TEST);
-  console.log("FIREBASE_ADMIN_CREDENTIAL", firebaseAdminCredential);
 
   if (!firebaseAdminCredential) {
     throw new Error('Firebase admin credential is not defined.');
@@ -16,7 +13,7 @@ if (!admin.apps.length) {
 
   admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
-    databaseURL: `https://${process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID}.firebaseio.com`,
+    databaseURL: `https://${process.env.FIREBASE_PROJECT_ID}.firebaseio.com`,
   });
 }
 
