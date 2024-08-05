@@ -1,6 +1,6 @@
 import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
-import { firestoreAdmin } from "@open-foody/utils/src/firebase/firebaseAdmin";
+import { firestoreAdmin } from "@/helper/firebaseAdmin";
 import bcrypt from "bcrypt";
 
 const authOptions: NextAuthOptions = {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { firestoreAdmin } from "@open-foody/utils/src/firebase/firebaseAdmin";
+import { firestoreAdmin } from "@/helper/firebaseAdmin";
 import { getServerSession } from "next-auth";
 import bcrypt from "bcrypt";
 

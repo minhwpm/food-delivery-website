@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { firestoreAdmin } from "@open-foody/utils/src/firebase/firebaseAdmin";
+import { firestoreAdmin } from "@/helper/firebaseAdmin";
 import bcrypt from "bcrypt";
 
 export async function POST(req: NextRequest) {
