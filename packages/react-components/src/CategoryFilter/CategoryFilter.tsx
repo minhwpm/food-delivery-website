@@ -9,11 +9,8 @@ import styles from "./CategoryFilter.module.scss";
 export const CategoryFilter: React.FC<{ categories: Array<FoodCategoryType> }> = ({
   categories,
 }) => {
-  const { foodList, selectedCategory } = useAppSelector((s) => s.food);
-  console.log("CATEOGRY FILTER", selectedCategory);
-
+  const { selectedCategory } = useAppSelector((s) => s.food);
   const dispatch = useAppDispatch();
-
   const onChangeCategory = async (category: { id: string; name: string; } | null) => {
     dispatch(changeCategory({ id: category?.id ?? null, name: category?.name ?? "all" }));
   }
@@ -25,7 +22,6 @@ export const CategoryFilter: React.FC<{ categories: Array<FoodCategoryType> }> =
       return;
     }
     
-    console.log("CATEGORY FILTER USE EFFECT")
     // Effect to run when selectedCategory changes
     const fetchAndUpdateFoodList = async () => {
       const newFoodItems = await fetchFoods(

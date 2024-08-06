@@ -1,9 +1,10 @@
 import { Action, ThunkAction, createSlice } from "@reduxjs/toolkit";
 import { fetchFoods } from "@open-foody/utils";
 import { FoodItemType } from "@open-foody/types";
+import { RootState } from ".";
 
 const PAGE_SIZE = 12;
-interface FoodState {
+export interface FoodState {
   search: {
     keyword: string;
     resultNo: number;
@@ -56,6 +57,7 @@ const foodSlice = createSlice({
       state.foodList.showed = []
       state.pagination.currentNo = 1; // Reset pagination when changing category
       state.pagination.hasMore = true; // Reset hasMore when changing category
+      state.notification = "";
     },
     searchByName(state, action) {
       state.search.keyword = action.payload.searchKey.toLowerCase().trim();
@@ -72,24 +74,29 @@ const foodSlice = createSlice({
     },
     updateNotification(state, action) {
       state.notification = action.payload
+    },
+    updateHasMore(state, action) {
+      state.pagination.hasMore = action.payload
     }
   },
 });
 
-export const fetchFoodData = (): ThunkAction<void, FoodState, unknown, Action> => async (dispatch, getState) => {
-  const state = getState() as FoodState; // Access the current state
+export const fetchFoodData = (): ThunkAction<void, RootState, unknown, Action> => async (dispatch, getState) => {
+  const state = getState().food as FoodState; // Access the current state
   try {
     const lastItem = state.foodList.showed[state.foodList.showed.length - 1];
     const newFoodItems = await fetchFoods(
-      lastItem,
+      lastItem ? lastItem : undefined,
       state.selectedCategory.id ?? undefined,
     );
+    console.log("FETCH FOOD", newFoodItems)
     if (newFoodItems.length > 0) {
       dispatch(updateFoodList(newFoodItems));
-      dispatch(nextPage(state.pagination.currentNo + 1)); // Increment the page number
+      dispatch(nextPage(state.pagination.currentNo + 1));
+      dispatch(updateNotification(""));
     } else {
-      dispatch(updateNotification("No more food items available.")); // Handle when there are no more items
-      state.pagination.hasMore = false; // Update hasMore to false
+      dispatch(updateNotification("No more food items available."));
+      dispatch(updateHasMore(false))
     }
   } catch(e) {
     console.error(e)
@@ -97,5 +104,5 @@ export const fetchFoodData = (): ThunkAction<void, FoodState, unknown, Action> =
   }
 };
 
-export const {initFoodData, updateFoodList, changeCategory, searchByName, nextPage, updateNotification} = foodSlice.actions;
+export const {initFoodData, updateFoodList, changeCategory, updateHasMore, searchByName, nextPage, updateNotification} = foodSlice.actions;
 export default foodSlice;

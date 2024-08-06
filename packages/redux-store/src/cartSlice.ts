@@ -1,7 +1,7 @@
 import { CartItemType } from "@open-foody/types";
 import { createSlice } from "@reduxjs/toolkit";
 
-interface CartState {
+export interface CartState {
   items: CartItemType[];
 }
 

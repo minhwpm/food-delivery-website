@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import foodSlice, { fetchFoodData } from "./foodSlice";
+import foodSlice from "./foodSlice";
 import cartSlice from "./cartSlice";
 
 const store = configureStore({
@@ -8,8 +8,6 @@ const store = configureStore({
     cart: cartSlice.reducer,
   }
 });
-
-// store.dispatch(fetchFoodData())
 
 export default store;
 export type RootState = ReturnType<typeof store.getState>
