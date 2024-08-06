@@ -9,7 +9,7 @@ import styles from "./FoodList.module.scss"
 
 export const FoodList: React.FC<{
   foodItemsList: FoodItemType[];
-}> = ({ foodItemsList }) => {
+}> = ({foodItemsList}) => {
   const dispatch = useAppDispatch();
   const { foodList, search, pagination, notification } = useAppSelector((s) => s.food);
   useEffect(() => {
